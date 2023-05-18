@@ -1,0 +1,29 @@
+@import './variables.scss';
+
+@mixin breakpoint($breakpoint, $direction: min) {
+  $breakpoint-value: get-breakpoint-value($breakpoint);
+
+  @if $direction==max {
+    @media (max-width: ($breakpoint-value - 0.02)) {
+      @content;
+    }
+  }
+
+  @else if $direction==min {
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  }
+}
+
+@function get-breakpoint-value($breakpoint) {
+
+  // If the breakpoint doesn't exist, just use the passed value (i.e 500px)
+  @if map-has-key($breakpoints, $breakpoint) {
+    @return map-get($breakpoints, $breakpoint);
+  }
+
+  @else {
+    @return $breakpoint;
+  }
+}

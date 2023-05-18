@@ -1,0 +1,17 @@
+@use '../../styles/_breakpoints.scss' as bp;
+@use '../../styles/_flexbox.scss' as flex;
+@use '../../styles/_variables.scss' as *;
+
+.default {
+    padding: 0 2rem;
+}
+
+.header{
+    @include flex.row(space-between, center);
+    @include bp.breakpoint(md, min) {
+    @include flex.row(space-evenly, center);
+    max-width: map-get($breakpoints, 'xl');
+    margin: 0 auto;
+    }
+}
+

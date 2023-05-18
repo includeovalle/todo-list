@@ -1,0 +1,9 @@
+@use '../../styles/_variables.scss' as *;
+@use '../../styles/_flexbox.scss' as flex;
+@use '../../styles/_breakpoints.scss' as bp;
+
+.default {
+    border: none;
+    background-color: transparent;
+
+}

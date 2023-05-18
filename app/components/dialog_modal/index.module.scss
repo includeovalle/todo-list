@@ -1,0 +1,25 @@
+@use '../../styles/_variables.scss' as *;
+.default {
+    width: 50vw;
+    margin-left: 50vw;
+    border: $default-border-radius solid $green-bg;
+    border-top: 0;
+    border-right: 0;
+    border-radius: $default-border-radius 0 0 $default-border-radius;
+    padding: 1rem;
+    transition: all 0.3s ease-in-out;
+    height: 100vh;
+}
+
+.modal{
+    width: 40%;
+    margin: 0 auto;
+    height: 20vh;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: $default-border-radius;
+    padding: $default-padding;
+    &::backdrop {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+}

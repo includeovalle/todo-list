@@ -1,0 +1,15 @@
+@use '../../styles/_variables.scss' as *;
+@use '../../styles/_classes.scss' as class;
+
+.default{
+    border: none;
+    background-color: transparent;
+    width: 100%;
+}
+
+.center{
+    @extend .default;
+    @extend .first-cap;
+    text-align: center;
+}
+

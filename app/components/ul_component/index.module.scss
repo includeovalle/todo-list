@@ -1,0 +1,35 @@
+@use '../../styles/_breakpoints.scss' as bp;
+@use '../../styles/_variables.scss' as *;
+@use '../../styles/_flexbox.scss' as flex;
+.default {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        font-size: 1.5rem;
+        &:first-letter {
+            text-transform: capitalize;
+        }
+    }
+}
+
+
+.nav{ 
+    display: none;
+
+    @include bp.breakpoint(md, min) {
+        @include flex.row(center, flex-end);
+        max-width: 550px;
+        li {
+            padding: 0 1rem;
+        }
+    }
+}
+.mobileNav{
+    margin-top: 5em;
+    li {
+        padding: 1rem 0;
+        border-bottom: 1px solid $primary;
+    }
+}

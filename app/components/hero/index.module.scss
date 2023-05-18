@@ -1,0 +1,32 @@
+@use '../../styles/_breakpoints.scss' as bp;
+@use '../../styles/_flexbox.scss' as flex;
+@use '../../styles/_variables.scss' as *;
+
+.default {
+    @include flex.col();
+    position: relative;
+    background-color: purple;
+    height: 40vh;
+    width: 100%;
+    margin: 0 auto;
+    perspective: 10px;
+    img {
+        object-fit: cover;
+    }
+    figcaption {
+        position: absolute;
+        color: $white;
+        width: 50%;
+        text-align: justify;
+        font-size: clamp(1.5rem, 2vw, 2rem);
+        border-left: 2px solid $white;
+        text-transform: uppercase;
+        text-shadow: 0px 0px 2px $black;
+        transform: translateZ(-5px) scale(2);
+    }
+    @include bp.breakpoint(md, min) {
+        figcaption {
+            width: 28%;
+        }
+    }
+}

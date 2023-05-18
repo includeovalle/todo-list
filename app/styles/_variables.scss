@@ -1,0 +1,53 @@
+//color
+$white: #cfcfcf;
+$black: #343437;
+$primary: rgb(69, 136, 51);
+$primary-hov: rgba(69,136, 51,.95);
+
+//backgrounds
+$primary-bg: #fbfbf9;
+$green-bg: #00b894;
+
+//Text
+//$primary-text:
+//$secondary-text:
+
+//defaults
+$default-button-size: 2em;
+//border
+$default-border-radius: 8px;
+//padding
+$default-padding: 2em;
+
+
+//hero
+$hero-height: 40vh;
+//$primary-button:
+//$secondary-button:
+
+//Font family
+//$primary-font:
+//$secondary-font:
+
+//Font size
+$font-size:(
+'xs': 12px,
+'sm': 14px,
+'base': 16px,
+'lg': 18px,
+'xl': 20px,
+'2xl': 24px,
+'3xl': 30px,
+);
+
+
+//breakpoints
+$breakpoints: (
+'xs': 0,
+'sm': 576px,
+'md': 768px,
+'lg': 992px,
+'xl': 1200px,
+'xxl': 1400px
+);
+

@@ -1,0 +1,21 @@
+
+//@mixins
+//create class capitalize mixin
+@mixin cap{
+    text-transform: capitalize;
+}
+
+@mixin first-cap{
+    &:first-letter{
+        text-transform: capitalize;
+    }
+}
+
+
+.capital{
+    @include cap();
+}
+
+.first-cap{
+    @include first-cap();
+}

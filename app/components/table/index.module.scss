@@ -1,0 +1,19 @@
+@use "../../styles/_classes.scss" as classes;
+
+.default {
+    width: 100%;
+}
+.tasks {
+    @extend .default;
+    text-align: left;
+    tbody{
+        tr{
+            td{
+                @extend .first-cap;
+            }
+            &:nth-child(odd){
+                background-color: #f2f2f2;
+            }
+        }
+    }
+}

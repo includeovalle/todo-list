@@ -1,0 +1,52 @@
+$direcions : (row, row-reverse, column, column-reverse);
+$justifys : (flex-start, flex-end, center, space-between, space-around, space-evenly);
+$aligns : (flex-start, flex-end, center, space-between, space-around, stretch);
+
+
+//create a mixin for flexbox
+@mixin flexbox($direction:row, $justify:center, $align:flex-start) {
+    $flex-value : get-flexbox-direction($direction);
+    $justify-value: get-flexbox-justify($justify);
+    $align-value : get-flexbox-align($align);
+
+    display: flex;
+    flex-direction: $flex-value;
+    justify-content: $justify-value;
+    align-items: $align-value;
+    @content;
+}
+
+//function to get flexbox direction
+@function get-flexbox-direction($direction) {
+    @if index($direcions, $direction) {
+        @return $direction;
+    } @else {
+        @return $direcion;
+    }
+}
+@function get-flexbox-justify($justify) {
+    @if index($justifys, $justify) {
+        @return $justify;
+    } @else {
+        @return $justify;
+    }
+}
+
+@function get-flexbox-align($align) {
+    @if index($aligns, $align) {
+        @return $align;
+    } @else {
+        @return $align;
+    }
+}
+
+//create a mixin for row which uses the flexbox mixin
+
+@mixin row($justify:center, $align:flex-start) {
+    @include flexbox(row, $justify, $align);
+}
+@mixin col($justify:center, $align:center) {
+    @include flexbox(column, $justify, $align);
+}
+
+
