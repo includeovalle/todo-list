@@ -1,14 +1,10 @@
 import React from 'react';
 import styles from "./index.module.scss";
+import { H_Interface } from "../../types/index";
 
 //asign a button type default is button
-interface buttonProps {
-    className?: string;
-    type: 1 | 2 | 3 | 4;
-    children?: React.ReactNode;
-}
 
-const Index = ({ className, type, children }: buttonProps) => {
+const Index = ({ className, type, children }: H_Interface) => {
     const propStyle = className ? styles[className] : styles['default'];
 
 

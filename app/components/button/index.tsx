@@ -1,15 +1,8 @@
 import React from 'react';
 import styles from "./index.module.scss";
+import { ButtonInterface } from '../../types/index';
 
-//asign a button type default is button
-interface buttonProps {
-    className?: string;
-    type?: "button" | "submit" | "reset" | undefined;
-    onClick?: () => void;
-    children?: React.ReactNode;
-}
-
-const Index = ({ className, type, children, onClick }: buttonProps) => {
+const Index = ({ className, type, children, onClick }: ButtonInterface) => {
     const propStyle = className ? styles[className] : styles['default'];
 
     return (

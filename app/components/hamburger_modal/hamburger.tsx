@@ -2,11 +2,9 @@
 import React, { useRef } from 'react';
 import { Button, Ul, Dialog } from '../index';
 import styles from "./index.module.scss"
+import { ListInterface } from "../../types/index";
 
 
-interface Props {
-    lis: string[];
-}
 
 export const Spans = () => {
     return (
@@ -16,7 +14,7 @@ export const Spans = () => {
             </>
            )}
 
-const Index = ({ lis }: Props) => {
+const Index = ({ lis }: ListInterface) => {
 
     const modalRef = useRef<HTMLDialogElement>(null);
 

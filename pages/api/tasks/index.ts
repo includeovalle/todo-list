@@ -1,5 +1,6 @@
+import { QueryResult } from 'pg';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { conn, writedb } from '../../../lib/db_config.js';
+import { conn, writedb } from '../../../lib/db_config';
 import bodyParser from 'body-parser';
 
 const jsonParser = bodyParser.json();
@@ -28,13 +29,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
 // GET /api/tasks/next13
 function getTasks(req: NextApiRequest, res: NextApiResponse) {
-  conn.query('SELECT * FROM tasks', function (err: any, result: any, fields: any) {
+  conn.query('SELECT * FROM tasks', function (err: Error, result: QueryResult<any>) {
     if (err) {
       console.error(err);
       res.status(500).end('Internal Server Error');
       return;
     }
-    res.status(200).json(result);
+    res.status(200).json(result.rows);
   });
 }
 
@@ -44,13 +45,13 @@ function createTask(req: NextApiRequest, res: NextApiResponse) {
   writedb.query(
     'INSERT INTO tasks (tasks, completed) VALUES ($1, $2)',
     [tasks, completed],
-    function (err: any, result: any, fields: any) {
+    function (err: Error, result: QueryResult<any>) {
       if (err) {
         console.error(err);
         res.status(500).end('Internal Server Error');
         return;
       }
-      res.status(201).json({ taskId: result.rows[0].id });
+      res.status(201).json({ taskId: result.rows[0]});
     }
   );
 }
@@ -59,7 +60,7 @@ function createTask(req: NextApiRequest, res: NextApiResponse) {
 function deleteTask(req: NextApiRequest, res: NextApiResponse) {
   const taskId = req.query.id;
 
-  conn.query('DELETE FROM tasks WHERE id = ?', [taskId], function (err: any, result: any, fields: any) {
+  conn.query('DELETE FROM tasks WHERE id = $1', [taskId], function (err: Error, result: QueryResult<any>) {
     if (err) {
       console.error(err);
       res.status(500).end('Internal Server Error');
@@ -75,9 +76,9 @@ function updateTask(req: NextApiRequest, res: NextApiResponse) {
   const taskData = req.body;
 
   writedb.query(
-    'UPDATE tasks SET task_name = ?, task_description = ? WHERE id = ?',
+    'UPDATE tasks SET task_name = $1, task_description = $2 WHERE id = $3',
     [taskData.taskName, taskData.taskDescription, taskId],
-    function (err: any, result: any, fields: any) {
+    function (err: Error, result: QueryResult<any>) {
       if (err) {
         console.error(err);
         res.status(500).end('Internal Server Error');

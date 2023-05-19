@@ -1,14 +1,10 @@
 import React from "react";
 import styles from "./index.module.scss";
 import { Button } from "../index";
+import { FormInterface } from "../../types/index";
 
-interface Props {
-    className?: string;
-    children: React.ReactNode;
-    buttonText: string;
-}
 
-const Index = ({ className, children, buttonText }:Props) => {
+const Index = ({ className, children, buttonText }:FormInterface) => {
 
     const classProps = className ? styles.className : styles["default"]
 

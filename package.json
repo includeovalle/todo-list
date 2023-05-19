@@ -21,5 +21,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.2",
+    "@types/pg": "^8.6.6"
   }
 }

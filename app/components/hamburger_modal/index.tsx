@@ -1,11 +1,7 @@
 'use client'
 import React, { useRef } from 'react';
 import { Button, Ul, Dialog } from '../index';
-
-
-interface Props {
-    lis: string[];
-}
+import { ListInterface } from "../../types/index";
 
 export const Spans = () => {
     return (
@@ -15,7 +11,7 @@ export const Spans = () => {
             </>
            )}
 
-const Index = ({ lis }: Props) => {
+const Index = ({ lis }: ListInterface) => {
 
     const modalRef = useRef<HTMLDialogElement>(null);
 

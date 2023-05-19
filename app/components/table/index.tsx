@@ -15,7 +15,6 @@ interface Props {
 const Index = ({ className, data }: Props) => {
   const classProps = className ? styles[className] : styles['default'];
 
-  console.log(data);
 
   return (
     <table className={classProps}>
@@ -27,7 +26,7 @@ const Index = ({ className, data }: Props) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((datas) => (
+      {data.map((datas:DataItem) => (
           <tr key={datas.id}>
             <td>{datas.id}</td>
             <td>{datas.tasks}</td>

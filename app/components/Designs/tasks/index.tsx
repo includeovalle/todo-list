@@ -1,13 +1,11 @@
 "use client"
 
 import React, { useRef } from 'react';
-import { Htag, Button, Container, Dialog, Form, ColLabel, RowLabel, Ul, Table } from '../../index';
+import { Htag, Button, Container, Dialog, Form, ColLabel, RowLabel, Table } from '../../index';
+import { ListInterface } from "../../../types/index";
 
-interface TasksProps {
-    data: object[];
-}
 
-const Tasks = ({data}:TasksProps) => {
+const Tasks = ({ data }: ListInterface) => {
     const modalRef = useRef<HTMLDialogElement>(null);
     const modalHandlerOpen = () => {
         modalRef.current?.showModal();
@@ -16,8 +14,6 @@ const Tasks = ({data}:TasksProps) => {
     const modalHandlerClose = () => {
         modalRef.current?.close();
     };
-
-
 
     return (
         <Container>
@@ -38,7 +34,7 @@ const Tasks = ({data}:TasksProps) => {
             </Dialog>
 
             <Table className={'tasks'} data={data} />
-            
+
 
 
         </Container>

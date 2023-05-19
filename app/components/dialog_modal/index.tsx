@@ -1,16 +1,11 @@
 import styles from "./index.module.scss"
 import { Button } from '../index';
+import {DialogInterface} from "../../types/index";
 import React, { forwardRef } from 'react';
 
 //closeBtn must be able to receive a component as a prop
-interface Props {
-    closeBtn: React.ReactNode;
-    onClick: () => void;
-    className?: string;
-    children: React.ReactNode;
-}
 
-const Index = forwardRef<HTMLDialogElement, Props>(({ closeBtn,onClick, children, className }: Props, ref) => {
+const Index = forwardRef<HTMLDialogElement, DialogInterface>(({ closeBtn,onClick, children, className }: DialogInterface, ref) => {
 
     const propStyle = className ? styles[className] : styles['default'];
     return (
