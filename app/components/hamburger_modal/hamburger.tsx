@@ -6,13 +6,6 @@ import { ListInterface } from "../../types/index";
 
 
 
-export const Spans = () => {
-    return (
-            <>
-            <span></span>
-            <span></span>
-            </>
-           )}
 
 const Index = ({ lis }: ListInterface) => {
 

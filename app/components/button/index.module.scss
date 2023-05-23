@@ -41,6 +41,7 @@
     top: 2em;
     height:$default-button-size;
     width: $default-button-size;
+    cursor: pointer;
     &>span{
         position: absolute;
         width: 100%;

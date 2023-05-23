@@ -29,7 +29,7 @@ const Index = ({ className, data }: Props) => {
       {data.map((datas:DataItem) => (
           <tr key={datas.id}>
             <td>{datas.id}</td>
-            <td>{datas.tasks}</td>
+            <td>{datas.task}</td>
             <td>{datas.completed ? 'completed' : 'not completed'}</td>
           </tr>
         ))}
