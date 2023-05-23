@@ -22,7 +22,7 @@ const Tasks = ({ data }: ListInterface) => {
                 add task +
             </Button>
 
-            <Dialog className={'modal'} ref={modalRef} closeBtn={'X'} onClick={() => modalHandlerClose()}>
+            <Dialog className={'modal'} ref={modalRef}  onClick={() => modalHandlerClose()}>
                 <Form buttonText={'enviar'}>
                     <ColLabel type={'text'} placeholder={'enter new task'}>
                         task

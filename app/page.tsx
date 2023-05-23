@@ -2,7 +2,8 @@ import { Tasks } from './components/Designs/index'
 
 export default async function Home() {
 
-    const res = await fetch('http://localhost:3000/api/tasks')
+    //add ServerApi from .env.local file
+    const res = await fetch(`${process.env.SERVER_API}/tasks`)
     const data = await res.json()
 
     return (

@@ -6,13 +6,6 @@ import { ListInterface } from "../../types/index";
 
 
 
-export const Spans = () => {
-    return (
-            <>
-            <span></span>
-            <span></span>
-            </>
-           )}
 
 const Index = ({ lis }: ListInterface) => {
 
@@ -34,7 +27,7 @@ const Index = ({ lis }: ListInterface) => {
                 <span></span>
             </Button>
 
-            <Dialog ref={modalRef} closeBtn={<Spans/>} onClick={() => closeModal()}>
+            <Dialog ref={modalRef} onClick={() => closeModal()}>
                 <Ul onClick={() => closeModal()} className={'mobileNav'} lis={lis} />
             </Dialog>
         </>
