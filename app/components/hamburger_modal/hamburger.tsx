@@ -27,7 +27,7 @@ const Index = ({ lis }: ListInterface) => {
                 <span></span>
             </Button>
 
-            <Dialog ref={modalRef} closeBtn={<Spans/>} onClick={() => closeModal()}>
+            <Dialog ref={modalRef} onClick={() => closeModal()}>
                 <Ul onClick={() => closeModal()} className={'mobileNav'} lis={lis} />
             </Dialog>
         </>

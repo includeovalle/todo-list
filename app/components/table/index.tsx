@@ -3,7 +3,7 @@ import styles from './index.module.scss';
 
 interface DataItem {
   id: number;
-  tasks: string;
+  task: string;
   completed: boolean;
 }
 
