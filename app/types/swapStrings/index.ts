@@ -1,4 +1,4 @@
-export interface swapProps {
+export default interface swapProps {
     swap?: boolean;
     swapString?: string;
 }

@@ -1,9 +1,0 @@
-export { default as childrenInterface } from './children';
-export { default as classNamesInterface } from './className';
-export { default as ButtonInterface } from './button';
-export { default as DialogInterface } from './dialog';
-export { default as FormInterface } from './form';
-export { default as H_Interface } from './h'; 
-export { default as UlInterface } from './ul';
-export { default as ListInterface } from './ul/list'
-export { default as HeaderInterface } from './header';

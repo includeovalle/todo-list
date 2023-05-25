@@ -1,8 +1,4 @@
-import { ClassName } from '../className/index'
-import { Children } from '../children/index'
-
-export interface Props {
-    className?: ClassName;
-    children?: Children;
+import { childrenInterface, classNamesInterface } from '../index'
+export default interface Props extends childrenInterface, classNamesInterface {
     buttonText: string;
 }

@@ -1,9 +1,6 @@
-import { Children } from '../children/index'
-import { ClassName } from '../className/index'
+import { childrenInterface, classNamesInterface } from '../index'
 
-export interface Props {
-    closeBtn: React.ReactNode;
+export default interface Props extends childrenInterface, classNamesInterface {
+    closeBtn?: React.ReactNode;
     onClick: () => void;
-    className?: ClassName;
-    children?: Children;
 }

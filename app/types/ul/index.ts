@@ -1,9 +1,6 @@
-import { ClassName } from '../className/index';
-import {list} from './list';
+import { classNamesInterface, ListInterface } from '../index'
 
-export interface Props {
-    className?: ClassName;
+export default interface Props extends classNamesInterface, ListInterface {
     onClick?: () => void;
     links?: boolean;
-    lis?: list;
 }

@@ -1,17 +1,10 @@
 'use client'
 import React, { useRef } from 'react';
 import { Button, Ul, Dialog } from '../index';
-import { ListInterface } from "../../types/index";
+import { UlInterface } from "../../types/index";
 
-export const Spans = () => {
-    return (
-            <>
-            <span></span>
-            <span></span>
-            </>
-           )}
 
-const Index = ({ lis }: ListInterface) => {
+const Index = ({ otherLis }: UlInterface ) => {;
 
     const modalRef = useRef<HTMLDialogElement>(null);
 
@@ -31,8 +24,8 @@ const Index = ({ lis }: ListInterface) => {
                 <span></span>
             </Button>
 
-            <Dialog ref={modalRef} closeBtn={<Spans/>} onClick={() => closeModal()}>
-                <Ul onClick={() => closeModal()} className={'mobileNav'} lis={lis} />
+            <Dialog ref={modalRef} onClick={() => closeModal()}>
+            <Ul onClick={() => closeModal()} className={'mobileNav'} otherLis={otherLis} />
             </Dialog>
         </>
     );

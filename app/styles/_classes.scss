@@ -1,4 +1,3 @@
-
 //@mixins
 //create class capitalize mixin
 @mixin cap{
@@ -19,3 +18,4 @@
 .first-cap{
     @include first-cap();
 }
+

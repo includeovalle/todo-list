@@ -3,7 +3,28 @@
 @use '../../styles/_breakpoints.scss' as bp;
 
 .default {
+    @include flex.col(center, center);
+    position: relative;
     border: none;
     background-color: transparent;
+    height: $hero-height;
 
+    img {
+        object-fit: cover;
+    }
+    figcaption {
+        position: absolute;
+        color: $white;
+        width: 50%;
+        text-align: justify;
+        font-size: clamp(1.5rem, 2vw, 2rem);
+        border-left: 2px solid $white;
+        text-transform: uppercase;
+        text-shadow: 0px 0px 2px $black;
+    }
+    @include bp.breakpoint(md, min) {
+        figcaption {
+            width: 28%;
+        }
+    }
 }

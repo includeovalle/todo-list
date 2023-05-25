@@ -1,3 +1,3 @@
-export interface ClassName {
+export default interface ClassName {
     className?: string;
 }

@@ -1,7 +1,3 @@
-import { ClassName } from '../className/index'
-import { Children } from '../children/index'
+import { childrenInterface, classNamesInterface } from '../index'
 
-export interface Props {
-    className?: ClassName;
-    children?: Children;
-}
+export default interface Props extends childrenInterface, classNamesInterface {}

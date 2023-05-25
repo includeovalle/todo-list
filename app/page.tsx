@@ -6,9 +6,10 @@ export default async function Home() {
     const res = await fetch(`${process.env.SERVER_API}/tasks`)
     const data = await res.json()
 
+    console.log(data)
     return (
         <>
-        <Tasks data={data} />
+        <Tasks dataTable={data} />
         </>
     )
 }
