@@ -3,7 +3,7 @@ import Link from 'next/link'
 import styles from "./index.module.scss";
 import { UlInterface } from "../../types/index";
 
-const Ul = ({ className, lis, onClick, links=false}: UlInterface) => {
+const Ul = ({ className, lis, otherLis, onClick, links=false}: UlInterface) => {
     //create some custo styles which receive className as props and 'default' as default value
     const propStyle = className ? [styles[className], styles['default']] : [styles['default']];
 
@@ -11,12 +11,22 @@ const Ul = ({ className, lis, onClick, links=false}: UlInterface) => {
     return (
         <ul className={customStyles}>
             {links &&
-                lis.map((li:React.ReactNode , index:number) => {
+                lis?.map((li:React.ReactNode , index:number) => {
                     return <Link href={`/${li}`} key={index}><li onClick={onClick}>{li}</li></Link>
                 })
             }
             {!links &&
-                lis.map((li:React.ReactNode , index:number) => {
+                lis?.map((li:React.ReactNode , index:number) => {
+                    return <li key={index} onClick={onClick}>{li}</li>
+                })
+            }
+            {links &&
+                otherLis?.map((li:React.ReactNode , index:number) => {
+                    return <Link href={`/${li}`} key={index}><li onClick={onClick}>{li}</li></Link>
+                })
+            }
+            {!links &&
+                otherLis?.map((li:React.ReactNode , index:number) => {
                     return <li key={index} onClick={onClick}>{li}</li>
                 })
             }

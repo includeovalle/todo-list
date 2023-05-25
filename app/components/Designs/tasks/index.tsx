@@ -2,10 +2,12 @@
 
 import React, { useRef } from 'react';
 import { Htag, Button, Container, Dialog, Form, ColLabel, RowLabel, Table } from '../../index';
-import { ListInterface } from "../../../types/index";
+import {TableInterface } from "../../../types/index";
 
 
-const Tasks = ({ data }: ListInterface) => {
+const Tasks = ({ dataTable }: TableInterface) => {
+    
+    console.log(Array.isArray(dataTable))
     const modalRef = useRef<HTMLDialogElement>(null);
     const modalHandlerOpen = () => {
         modalRef.current?.showModal();
@@ -33,7 +35,8 @@ const Tasks = ({ data }: ListInterface) => {
                 </Form>
             </Dialog>
 
-            <Table className={'tasks'} data={data} />
+            <Table dataTable={dataTable} />
+            
 
 
 

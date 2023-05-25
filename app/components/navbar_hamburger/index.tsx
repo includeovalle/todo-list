@@ -1,20 +1,17 @@
 import { Ul, Hamburger } from '../index'
+import { UlInterface } from "../../types/index";
 import React from 'react';
 
-interface Props {
-    nav: string[];
-    mobileNav: string[];
-}
 
-const Index = ({ nav, mobileNav }:Props) => {
+const Index = ({ lis, otherLis}:UlInterface) => {
     return (
         <>
 
             <nav>
-                <Ul className="nav" lis={nav} />
+                <Ul className="nav" lis={lis} />
             </nav>
 
-            <Hamburger lis={mobileNav} />
+            <Hamburger lis={otherLis} />
         </>
     );
 };

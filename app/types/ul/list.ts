@@ -1,3 +1,4 @@
-export interface list {
-    lis: string[];
+export default interface list {
+    lis?: string[];
+    otherLis?: string[];
 }

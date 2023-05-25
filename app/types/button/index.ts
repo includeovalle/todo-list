@@ -1,9 +1,6 @@
-import { Children } from '../children/index'
-import { ClassName } from '../className/index'
+import { childrenInterface, classNamesInterface } from '../index'
 
-export interface buttonProps {
-    className?: ClassName;
+export default interface Props extends childrenInterface, classNamesInterface {
     type?: "button" | "submit" | "reset" | undefined;
     onClick?: () => void;
-    children?: Children;
 }

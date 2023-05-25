@@ -1,18 +1,11 @@
 import React from 'react';
 import styles from './index.module.scss';
+import { classNamesInterface, TableInterface } from '../../types/index'
 
-interface DataItem {
-  id: number;
-  task: string;
-  completed: boolean;
-}
+interface Props extends classNamesInterface, TableInterface { }
 
-interface Props {
-  className?: string;
-  data: DataItem[];
-}
+const Index = ({ className, dataTable }: Props) => {
 
-const Index = ({ className, data }: Props) => {
   const classProps = className ? styles[className] : styles['default'];
 
 
@@ -26,7 +19,7 @@ const Index = ({ className, data }: Props) => {
         </tr>
       </thead>
       <tbody>
-      {data.map((datas:DataItem) => (
+      {dataTable?.map((datas:any) => (
           <tr key={datas.id}>
             <td>{datas.id}</td>
             <td>{datas.task}</td>
