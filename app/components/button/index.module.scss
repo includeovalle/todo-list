@@ -6,11 +6,10 @@
 .default {
     border: none;
     background-color: transparent;
-
 }
 
 .nav{
-    color: white;
+    color: $white;
     @include bp.breakpoint(md, min) {
         display: none;
     }
@@ -57,11 +56,18 @@
     }
 }
 
+.deleteTask {
+    @extend  .closeHamburger;
+    position: relative;
+    right: unset;
+    top: unset;
+    border: 1px groove $secondary;
+}
 .addTask{
     @extend  .default;
     @extend  .first-cap;
     background-color: $primary;
-    color: white;
+    color: $white;
     padding: 1rem 2rem;
     transition: all 300 ease-in-out;
     width: 100%;
@@ -72,6 +78,10 @@
 }
 
 .form-btn{
-    background-color: red;
-    color: white;
+    @extend  .default;
+    @extend  .first-cap;
+    background-color: $primary;
+    border-radius: $default-border-radius;
+    color: $white;
+    padding: $default-padding-inset;
 }

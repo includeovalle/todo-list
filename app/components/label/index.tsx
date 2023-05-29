@@ -5,18 +5,21 @@ interface Props {
     className?: string;
     type: "submit" | "text" | "password" | "email" | "number";
     placeholder?: string;
-    children?: React.ReactNode;
+    children?: string;
 }
 
 const Index = ({ className, type, placeholder, children }: Props) => {
 
+
     const classProps = className ? styles.className : styles["row"]
 
+        const text= children ? children : "enter text"
+
     return (
-        <label className={classProps}>
-            {children}
-            <input type={type} placeholder={placeholder} />
-        </label>
+    <label className={classProps}>
+    <span>{children}</span>
+        <input type={type} placeholder={placeholder} />
+    </label>
     );
 };
 
@@ -25,9 +28,11 @@ export const ColLabel = ({ className, type, placeholder, children }: Props)=> {
 
     const classProps = className ? styles.className : styles["column"]
 
+        const text= children ? children : "enter text"
+
     return (
     <label className={classProps}>
-        {children}
+    <span>{children}</span>
         <input type={type} placeholder={placeholder} />
     </label>
     );
