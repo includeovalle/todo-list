@@ -3,6 +3,7 @@ $white: #cfcfcf;
 $black: #343437;
 $primary: rgb(69, 136, 51);
 $primary-hov: rgba(69,136, 51,.95);
+$secondary: aliceblue;
 
 //backgrounds
 $primary-bg: #fbfbf9;
@@ -18,7 +19,7 @@ $default-button-size: 2em;
 $default-border-radius: 8px;
 //padding
 $default-padding: 2em;
-
+$default-padding-inset: .5em;
 
 //hero
 $hero-height: 40vh;

@@ -1,13 +1,12 @@
 "use client"
 
 import React, { useRef } from 'react';
-import { Htag, Button, Container, Dialog, Form, ColLabel, RowLabel, Table } from '../../index';
+import { Htag, Button, Container, Dialog, Form, ColLabel, Table } from '../../index';
 import {TableInterface } from "../../../types/index";
 
 
 const Tasks = ({ dataTable }: TableInterface) => {
     
-    console.log(Array.isArray(dataTable))
     const modalRef = useRef<HTMLDialogElement>(null);
     const modalHandlerOpen = () => {
         modalRef.current?.showModal();
@@ -17,28 +16,26 @@ const Tasks = ({ dataTable }: TableInterface) => {
         modalRef.current?.close();
     };
 
+    const SubmitHandler = (e: React.FormEvent<HTMLFormElement>) =>{
+        e.preventDefault();
+        console.log('submit');
+    };
     return (
         <Container>
-            <Htag type={3} className={'center'} > tasks broo</Htag >
+            <Htag type={3} className={'center'} > Simple todo list</Htag >
             <Button className={'addTask'} onClick={() => modalHandlerOpen()}>
                 add task +
             </Button>
 
             <Dialog className={'modal'} ref={modalRef}  onClick={() => modalHandlerClose()}>
-                <Form buttonText={'enviar'}>
+                <Form buttonText={'agregar'} onSubmit={e => SubmitHandler(e)}>
                     <ColLabel type={'text'} placeholder={'enter new task'}>
-                        task
-                    </ColLabel>
-                    <RowLabel type={'password'} placeholder={'enter new row'}>
                         enter task
-                    </RowLabel>
+                    </ColLabel>
                 </Form>
             </Dialog>
 
-            <Table dataTable={dataTable} />
-            
-
-
+            <Table className="tasks" dataTable={dataTable} />
 
         </Container>
     );

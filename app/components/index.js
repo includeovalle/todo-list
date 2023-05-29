@@ -1,5 +1,6 @@
 export { default as Header } from './header/index';
 export { default as Button } from './button/index';
+export { closeButton as CloseButton } from './button/index';
 export { default as Ul } from './ul_component/index';
 export { default as Dialog } from './dialog_modal/index';
 export { default as Hamburger } from './hamburger_modal/index';

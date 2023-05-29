@@ -4,14 +4,14 @@ import { Button } from "../index";
 import { FormInterface } from "../../types/index";
 
 
-const Index = ({ className, children, buttonText }:FormInterface) => {
+const Index = ({ className, children, buttonText, onSubmit }:FormInterface) => {
 
     const classProps = className ? styles.className : styles["default"]
 
     return (
-        <form className={classProps}>
+        <form className={classProps} onSubmit={onSubmit}>
             {children}
-            <Button className={'form-btn'}>{buttonText}</Button>
+            <Button type='submit' className={'form-btn'}>{buttonText}</Button>
         </form>
     );
 };

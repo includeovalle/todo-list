@@ -13,4 +13,28 @@ const Index = ({ className, type, children, onClick }: ButtonInterface) => {
     );
 };
 
+const Spans = () => {
+    return (
+        <>
+            <span></span>
+            <span></span>
+        </>
+    )
+}
+
+interface CloseButtonInterface extends ButtonInterface {
+    closeBtn?: JSX.Element
+}
+
+export const closeButton = ({onClick, className="deleteTask", closeBtn}:CloseButtonInterface) =>{
+
+    const closeBtnDefault = closeBtn ? closeBtn : <Spans />;
+
+    return(
+            <Index type={'button'} className={className} onClick={onClick}>
+            {closeBtnDefault}
+            </Index>
+            )
+};
+
 export default Index;

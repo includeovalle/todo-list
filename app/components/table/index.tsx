@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './index.module.scss';
 import { classNamesInterface, TableInterface } from '../../types/index'
+import { CloseButton } from '../index';
 
 interface Props extends classNamesInterface, TableInterface { }
 
@@ -24,6 +25,7 @@ const Index = ({ className, dataTable }: Props) => {
             <td>{datas.id}</td>
             <td>{datas.task}</td>
             <td>{datas.completed ? 'completed' : 'not completed'}</td>
+            <td>{<CloseButton /> }</td>
           </tr>
         ))}
       </tbody>
