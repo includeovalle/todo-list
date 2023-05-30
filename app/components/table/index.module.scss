@@ -6,9 +6,12 @@
 .tasks {
     @extend .default;
     text-align: left;
-    tbody{
-        tr{
-            td{
+    th {
+        text-align: center;
+    }
+    tbody {
+        tr {
+            td {
                 @extend .first-cap;
             }
             &:nth-child(odd){
