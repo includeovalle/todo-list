@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./index.module.scss";
 import { Button } from "../index";
-import { FormInterface } from "../../types/index";
+import { FormInterface } from "app/types/";
 
 
 const Index = ({ className, children, buttonText, onSubmit }:FormInterface) => {
