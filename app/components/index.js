@@ -4,7 +4,6 @@ export { closeButton as CloseButton } from './button/index';
 export { default as Ul } from './ul_component/index';
 export { default as Dialog } from './dialog_modal/index';
 export { default as Hamburger } from './hamburger_modal/index';
-export { default as Hero } from './hero/index';
 export { default as Container } from './section_container/index';
 export { default as Navbar } from './navbar_hamburger/index';
 export { default as CustomImage } from './image/index';

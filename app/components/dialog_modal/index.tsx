@@ -6,7 +6,7 @@ import React, { forwardRef, ForwardedRef } from 'react';
 //closeBtn must be able to receive a component as a prop
 
 
-const Index = forwardRef<HTMLDialogElement, DialogInterface>(({ closeBtn, onClick, children, className }: DialogInterface, ref:ForwardedRef<HTMLDialogElement>) => {
+const Index = forwardRef(({ closeBtn, onClick, children, className }: DialogInterface, ref:ForwardedRef<HTMLDialogElement>) => {
 
 
     const propStyle = className ? styles[className] : styles['default'];
@@ -19,7 +19,7 @@ const Index = forwardRef<HTMLDialogElement, DialogInterface>(({ closeBtn, onClic
     )
 });
 
-Index.displayName = 'Dialog';
+Index.displayName = 'Index';
 export default Index;
 
 

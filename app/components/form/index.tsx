@@ -1,11 +1,10 @@
-import React from "react";
+import React, { forwardRef, ForwardedRef } from 'react';
 import styles from "./index.module.scss";
 import { Button } from "../index";
 import { FormInterface } from "../../types/index";
 
 
-const Index = ({ className, children, buttonText, onSubmit }:FormInterface) => {
-
+const Index = forwardRef(({ className, children, buttonText, onSubmit }: FormInterface, ref: ForwardedRef<HTMLFormElement>) => {
     const classProps = className ? styles.className : styles["default"]
 
     return (
@@ -14,7 +13,9 @@ const Index = ({ className, children, buttonText, onSubmit }:FormInterface) => {
             <Button type='submit' className={'form-btn'}>{buttonText}</Button>
         </form>
     );
-};
+}
+);
 
+Index.displayName = 'Index';
 export default Index;
 

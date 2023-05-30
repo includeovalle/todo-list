@@ -7,9 +7,10 @@ interface Props {
     placeholder?: string;
     children?: string;
     name?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Index = ({ className, type, placeholder, children, name }: Props) => {
+const Index = ({ className, type, placeholder, children, name, onChange }: Props) => {
 
 
     const classProps = className ? styles.className : styles["row"]
@@ -25,7 +26,7 @@ const Index = ({ className, type, placeholder, children, name }: Props) => {
 };
 
 
-export const ColLabel = ({ className, type, placeholder, children, name }: Props)=> {
+export const ColLabel = ({ className, type, placeholder, children, name, onChange }: Props)=> {
 
     const classProps = className ? styles.className : styles["column"]
 
@@ -34,7 +35,7 @@ export const ColLabel = ({ className, type, placeholder, children, name }: Props
     return (
     <label className={classProps}>
     <span>{text}</span>
-        <input name={name} type={type} placeholder={placeholder} />
+    <input name={name} type={type} placeholder={placeholder} onChange={onChange}/>
     </label>
     );
 };
