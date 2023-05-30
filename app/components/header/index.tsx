@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./index.module.scss";
-import { HeaderInterface } from '../../types/index';
+import { HeaderInterface } from "app/types/";
 
 
 const Index = ({ children,className }:HeaderInterface) => {

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './index.module.scss';
-import { ImageInterface, SwapStringInterface, FigcaptionInterface, LinkInterface } from "../../types/index";
+import { ImageInterface, SwapStringInterface, FigcaptionInterface, LinkInterface } from "app/types/";
 
 interface Props extends ImageInterface, SwapStringInterface, FigcaptionInterface, LinkInterface {
     width?: number;

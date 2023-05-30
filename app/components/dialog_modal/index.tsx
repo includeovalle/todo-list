@@ -1,6 +1,6 @@
 import styles from "./index.module.scss"
 import { CloseButton } from '../index';
-import { DialogInterface } from "../../types/index";
+import { DialogInterface } from "app/types/";
 import React, { forwardRef, ForwardedRef } from 'react';
 
 //closeBtn must be able to receive a component as a prop

@@ -1,7 +1,7 @@
 'use client'
 import React, { useRef } from 'react';
 import { Button, Ul, Dialog } from '../index';
-import { UlInterface } from "../../types/index";
+import { UlInterface } from "app/types/";
 
 
 const Index = ({ otherLis }: UlInterface ) => {;

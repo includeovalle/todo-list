@@ -6,6 +6,7 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -16,6 +17,7 @@
     "incremental": true,
     "plugins": [
       {
+        "app/*": ["./app/*"],
         "name": "next"
       }
     ],
