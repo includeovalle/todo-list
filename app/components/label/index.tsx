@@ -6,9 +6,10 @@ interface Props {
     type: "submit" | "text" | "password" | "email" | "number";
     placeholder?: string;
     children?: string;
+    name?: string;
 }
 
-const Index = ({ className, type, placeholder, children }: Props) => {
+const Index = ({ className, type, placeholder, children, name }: Props) => {
 
 
     const classProps = className ? styles.className : styles["row"]
@@ -17,14 +18,14 @@ const Index = ({ className, type, placeholder, children }: Props) => {
 
     return (
     <label className={classProps}>
-    <span>{children}</span>
+    <span>{text}</span>
         <input type={type} placeholder={placeholder} />
     </label>
     );
 };
 
 
-export const ColLabel = ({ className, type, placeholder, children }: Props)=> {
+export const ColLabel = ({ className, type, placeholder, children, name }: Props)=> {
 
     const classProps = className ? styles.className : styles["column"]
 
@@ -32,8 +33,8 @@ export const ColLabel = ({ className, type, placeholder, children }: Props)=> {
 
     return (
     <label className={classProps}>
-    <span>{children}</span>
-        <input type={type} placeholder={placeholder} />
+    <span>{text}</span>
+        <input name={name} type={type} placeholder={placeholder} />
     </label>
     );
 };

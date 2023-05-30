@@ -63,7 +63,7 @@
     top: unset;
     border: 1px groove $secondary;
 }
-.addTask{
+.modalTask {
     @extend  .default;
     @extend  .first-cap;
     background-color: $primary;
