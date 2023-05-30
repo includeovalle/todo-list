@@ -3,7 +3,9 @@ import styles from "./index.module.scss";
 import {LabelInterface} from "app/types/";
 
 
-const Index = ({ className, type, placeholder, children, name }: LabelInterface) => {
+
+const Index = ({ className, type, placeholder, children, name, onChange }: LabelInterface) => {
+
 
 
     const classProps = className ? styles.className : styles["row"]
@@ -19,7 +21,7 @@ const Index = ({ className, type, placeholder, children, name }: LabelInterface)
 };
 
 
-export const ColLabel = ({ className, type, placeholder, children, name }: Props)=> {
+export const ColLabel = ({ className, type, placeholder, children, name, onChange }: Props)=> {
 
     const classProps = className ? styles.className : styles["column"]
 
@@ -28,7 +30,7 @@ export const ColLabel = ({ className, type, placeholder, children, name }: Props
     return (
     <label className={classProps}>
     <span>{text}</span>
-        <input name={name} type={type} placeholder={placeholder} />
+    <input name={name} type={type} placeholder={placeholder} onChange={onChange}/>
     </label>
     );
 };
