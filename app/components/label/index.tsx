@@ -1,15 +1,9 @@
 import React from "react";
 import styles from "./index.module.scss";
+import {LabelInterface} from "app/types/";
 
-interface Props {
-    className?: string;
-    type: "submit" | "text" | "password" | "email" | "number";
-    placeholder?: string;
-    children?: string;
-    name?: string;
-}
 
-const Index = ({ className, type, placeholder, children, name }: Props) => {
+const Index = ({ className, type, placeholder, children, name }: LabelInterface) => {
 
 
     const classProps = className ? styles.className : styles["row"]
@@ -19,7 +13,7 @@ const Index = ({ className, type, placeholder, children, name }: Props) => {
     return (
     <label className={classProps}>
     <span>{text}</span>
-        <input type={type} placeholder={placeholder} />
+        <input name={name} type={type} placeholder={placeholder} />
     </label>
     );
 };
