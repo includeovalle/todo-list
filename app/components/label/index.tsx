@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.scss";
-import {LabelInterface} from "app/types/";
+import {LabelInterface} from "@/app/types/";
 
 
 const Index = ({ className, type, placeholder, children, name }: LabelInterface) => {

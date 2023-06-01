@@ -1,5 +1,5 @@
 import { Ul, Hamburger } from '../index'
-import { UlInterface } from "../../types/index";
+import { UlInterface } from "@/app/types/index";
 import React from 'react';
 
 

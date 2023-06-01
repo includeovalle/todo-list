@@ -13,3 +13,4 @@ export type { default as UlInterface } from './ul';
 export type { default as ListInterface } from './ul/list'
 export type { default as TableInterface } from  './table/'
 export type { default as LabelInterface } from './label';
+export type { default as SectionInterface } from './section';

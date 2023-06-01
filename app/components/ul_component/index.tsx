@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link'
 import styles from "./index.module.scss";
-import { UlInterface } from "../../types/index";
+import { UlInterface } from "@/app/types/index";
 
 const Ul = ({ className, lis, otherLis, onClick, links=false}: UlInterface) => {
     //create some custo styles which receive className as props and 'default' as default value

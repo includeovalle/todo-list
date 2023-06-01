@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.module.scss';
-import { classNamesInterface, TableInterface } from '../../types/index'
+import { classNamesInterface, TableInterface } from '@/app/types/index'
 import { CloseButton } from '../index';
 
 interface Props extends classNamesInterface, TableInterface { }

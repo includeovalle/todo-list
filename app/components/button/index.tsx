@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./index.module.scss";
-import { ButtonInterface } from 'app/types';
+import { ButtonInterface } from '@app/types';
 
 const Index = ({ className, type, children, onClick }: ButtonInterface) => {
 

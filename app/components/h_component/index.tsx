@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./index.module.scss";
-import { H_Interface } from "app/types/";
+import { H_Interface } from "@/app/types/";
 
 //asign a button type default is button
 

@@ -1,11 +1,8 @@
 import React from 'react';
 import styles from "./index.module.scss";
-interface Props {
-    children?: React.ReactNode;
-    className?: string;
-    main?: boolean;
-}
-const Index = ({ children, className, main = false }: Props) => {
+import { SectionInterface } from '@app/types';
+
+const Index = ({ children, className, main = false }: SectionInterface) => {
     const propStyle = className ? styles[className] : styles['default'];
     return (
         <>
