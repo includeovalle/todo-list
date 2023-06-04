@@ -12,12 +12,20 @@ interface task {
 
 const Tasks = ({ dataTable }: TableInterface) => {
 
+    console.log('data_client: ', dataTable);
+
     const [dataTask, setDataTask ] = useState({});
     const formRef = React.createRef<HTMLFormElement>();
 
-    const SubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log('submit');
+// SubmitHandler function
+const SubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+ e.preventDefault();
+  const formData = formRef.current ? new FormData(formRef.current) : null; // Add null check
+  if (!formData) return; // Stop further execution if formData is null
+  const data = Object.fromEntries(formData);
+  data.completed = "false";
+  const stringData = JSON.stringify(data);
+        console.log('submit', stringData);
     };
 
     return (
