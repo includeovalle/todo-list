@@ -21,7 +21,7 @@ const Index = ({ className, type, placeholder, children, name, onChange }: Label
 };
 
 
-export const ColLabel = ({ className, type, placeholder, children, name, onChange }: Props)=> {
+export const ColLabel = ({ className, type, placeholder, children, name, onChange }: LabelInterface)=> {
 
     const classProps = className ? styles.className : styles["column"]
 
