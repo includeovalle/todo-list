@@ -1,13 +1,13 @@
 import { Tasks } from './components/Designs/index'
 
 export default async function Home() {
-    //add ServerApi from .env.local file
-    const res = await fetch(`${process.env.SERVER_API}/tasks`,{ cache: 'no-store' })
+
+    const res = await fetch("http://localhost:3000/api/task", { cache: 'no-store' })
     const data = await res.json()
 
     return (
         <>
-        <Tasks dataTable={data} />
+            <Tasks dataTable={data} />
         </>
     )
 }

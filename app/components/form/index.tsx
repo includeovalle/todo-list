@@ -8,7 +8,7 @@ const Index = forwardRef(({ className, children, buttonText, onSubmit }: FormInt
     const classProps = className ? styles.className : styles["default"]
 
     return (
-        <form className={classProps} onSubmit={onSubmit}>
+        <form ref={ref} className={classProps} onSubmit={onSubmit}>
             {children}
             <Button type='submit' className={'form-btn'}>{buttonText}</Button>
         </form>
