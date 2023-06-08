@@ -1,37 +1,50 @@
-import React from 'react';
+'use client'
+
+import SimpleTable from './simple';
+import React, { useEffect,  useState } from 'react';
 import styles from './index.module.scss';
 import { classNamesInterface, TableInterface } from '../../types/index'
-import { CloseButton } from '../index';
 
-interface Props extends classNamesInterface, TableInterface { }
+interface Props extends classNamesInterface, TableInterface { };
 
-const Index = ({ className, dataTable }: Props) => {
+
+
+const Index = ({ className, dataTable, pagination, rows, sort, reverse }: Props) => {
+
 
     const classProps = className ? styles[className] : styles['default'];
 
+    const [isPaginated, setIsPaginated ] = useState(pagination);
+
+
+    useEffect(()=>{
+
+    },[isPaginated]);
+    //update pagination value
+    const handlePagination = () => {
+        setIsPaginated(!isPaginated);
+    }
     return (
-        <table className={classProps}>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Tarea</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {dataTable?.map((datas: any) => {
-                    return (
-                        < tr key={datas.id} >
-                            <td>{datas.id}</td>
-                            <td>{datas.task}</td>
-                            <td>{datas.completed ? 'completed' : 'not completed'}</td>
-                            <td>{<CloseButton />}</td>
-                        </tr>
-                    )
-                }
-                )}
-            </tbody>
-        </table >
+        <>
+            {
+                pagination &&
+                <div>other table</div>
+            }
+            {
+                !pagination &&
+                    <>
+                <SimpleTable
+                    className={classProps}
+                    dataTable={dataTable ? dataTable : null}
+                    pagination={pagination}
+                    rows={rows}
+                    sort={sort}
+                    reverse={reverse}
+                />
+                <button onClick={()=> {handlePagination()}}>pagination</button>
+                </>
+            }
+        </>
     );
 };
 

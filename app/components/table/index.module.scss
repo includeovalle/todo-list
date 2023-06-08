@@ -1,3 +1,4 @@
+@use "../../styles/_variables.scss" as *;
 @use "../../styles/_classes.scss" as classes;
 
 .default {
@@ -8,6 +9,13 @@
     text-align: left;
     th {
         text-align: center;
+        &:nth-child(1) {
+            cursor: pointer;
+            &:hover {
+                background-color: $primary-hov;
+                color: $white;
+            }
+            }
     }
     tbody {
         tr {

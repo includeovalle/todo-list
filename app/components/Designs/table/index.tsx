@@ -1,30 +1,26 @@
 "use client"
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Htag, Container, Form, ColLabel, Table } from '../../index';
 import { Modal } from '../index';
 import { TableInterface } from "../../../types/index";
 
-interface task {
-    task: string;
-    completed: boolean;
-}
+interface PropsInterface extends TableInterface { }
 
-const Tasks = ({ dataTable }: TableInterface) => {
+const Tasks = ({ dataTable, pagination, rows, reverse, sort }: PropsInterface) => {
 
-    const [dataTask, setDataTask ] = useState({});
     const formRef = React.createRef<HTMLFormElement>();
 
-// SubmitHandler function
-const SubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
- e.preventDefault();
+    // SubmitHandler function
+    const SubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
-  const formData = formRef.current ? new FormData(formRef.current) : null; // Add null check
-  if (!formData) return; // Stop further execution if formData is null
+        const formData = formRef.current ? new FormData(formRef.current) : null; // Add null check
+        if (!formData) return; // Stop further execution if formData is null
 
-  const data = Object.fromEntries(formData);
-  data.completed = "false";
-  const stringData = JSON.stringify(data);
+        const data = Object.fromEntries(formData);
+        data.completed = "false";
+        const stringData = JSON.stringify(data);
 
         const response = await fetch('http://localhost:3000/api/task/POST', {
             method: 'POST',
@@ -49,7 +45,13 @@ const SubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
                 </Form>
             </Modal>
 
-            <Table className="tasks" dataTable={dataTable} />
+            <Table className="tasks"
+                dataTable={dataTable}
+                pagination={pagination}
+                rows={rows}
+                sort={sort}
+                reverse={reverse}
+            />
 
         </Container>
     );
