@@ -7,7 +7,7 @@ export default async function Home() {
 
     return (
         <>
-        <Tasks   sort dataTable={data} />
+            <Tasks  dataTable={data} />
         </>
     )
 }
