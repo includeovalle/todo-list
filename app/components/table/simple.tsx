@@ -5,7 +5,6 @@ import { dataSort } from './utils';
 import { CloseButton } from '../index';
 
 interface Props extends classNamesInterface, TableInterface {
-    setIsPaginated: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Index = ({ className, dataTable, pagination, rows, sort, reverse }: Props) => {
