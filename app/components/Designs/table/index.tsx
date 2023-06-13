@@ -7,7 +7,7 @@ import { TableInterface } from "../../../types/index";
 
 interface PropsInterface extends TableInterface { }
 
-const Tasks = ({ dataTable, pagination, rows, reverse, sort }: PropsInterface) => {
+const Tasks = ({ dataTable, pagination, rows, reverse }: PropsInterface) => {
 
     const formRef = React.createRef<HTMLFormElement>();
 
@@ -49,7 +49,6 @@ const Tasks = ({ dataTable, pagination, rows, reverse, sort }: PropsInterface) =
                 dataTable={dataTable}
                 pagination={pagination}
                 rows={rows}
-                sort={sort}
                 reverse={reverse}
             />
 
