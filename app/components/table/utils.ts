@@ -9,5 +9,3 @@ export const SORT = 'sort';
 export const DEFAULT_ROWS =10;
 export const DEFAULT_PAGE = 1;
 export { default as arrow } from 'public/arrow.png';
-
-

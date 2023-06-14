@@ -20,9 +20,11 @@ const dataPaginate = ({ currentPage, data, rows }: PaginateInterface) => {
     return [...data].slice(startIndex, endIndex);
 };
 
+
 const Index = ({ className, dataTable, rows, reverse }: Props) => {
 
     const TOTAL_ROWS = dataTable?.length ?? 0;
+
 
     const [isSorted, setIsSorted] = useState(false);
     const [isReversed, setIsReversed] = useState(reverse ? reverse : false);
@@ -68,20 +70,25 @@ const Index = ({ className, dataTable, rows, reverse }: Props) => {
         const isNumber = /^\d+$/.test(userRows);
         if (!isNumber) {
             setCurrentRows(5);
+
             if (dataTable) {
                 setTotalPages(Math.ceil(dataTable.length / 5));
+
             }
             const newData = dataPaginate({ currentPage, data: renderData, rows: 5 });
             setRenderPaginatedData([...newData]);
         } else if (rowsCount <= 0) {
             setCurrentRows(5);
+
             if (dataTable) {
                 setTotalPages(Math.ceil(dataTable.length / 5));
+
             }
             const newData = dataPaginate({ currentPage, data: renderData, rows: 5 });
             setRenderPaginatedData([...newData]);
         } else {
             setCurrentRows(rowsCount);
+
             if (dataTable) {
                 setTotalPages(Math.ceil(dataTable.length / 5));
             }
@@ -106,6 +113,7 @@ const Index = ({ className, dataTable, rows, reverse }: Props) => {
         <>
             <section className={styles.paginateContainer}>
                 <RowLabel name={'reverse'} type={'checkbox'} onChange={() => reverseHandler()} >
+
                     {SHOW_RECENT}
                 </RowLabel>
                 <span>
@@ -118,6 +126,7 @@ const Index = ({ className, dataTable, rows, reverse }: Props) => {
                 </span>
                 <ColLabel name={'userRows'} type={'number'} onChange={(e) => rowsHandler(e)} placeholder={`${currentRows}`} >
                     {SHOW_COLUMNS}
+
                 </ColLabel>
             </section >
             <table className={className} >
