@@ -1,37 +1,52 @@
-import React from 'react';
+'use client'
+
+import SimpleTable from './simple';
+import { RowLabel } from '@/app/components';
+import PaginationTable from './pagination';
+import { SHOW_MORE} from './utils';
+import React, { useState } from 'react';
 import styles from './index.module.scss';
 import { classNamesInterface, TableInterface } from '../../types/index'
-import { CloseButton } from '../index';
 
-interface Props extends classNamesInterface, TableInterface { }
+interface Props extends classNamesInterface, TableInterface { };
 
-const Index = ({ className, dataTable }: Props) => {
+
+
+const Index = ({ className, dataTable, pagination, rows, reverse }: Props) => {
+
 
     const classProps = className ? styles[className] : styles['default'];
 
+    const [isPaginated, setIsPaginated] = useState(pagination);
+
     return (
-        <table className={classProps}>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Tarea</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {dataTable?.map((datas: any) => {
-                    return (
-                        < tr key={datas.id} >
-                            <td>{datas.id}</td>
-                            <td>{datas.task}</td>
-                            <td>{datas.completed ? 'completed' : 'not completed'}</td>
-                            <td>{<CloseButton />}</td>
-                        </tr>
-                    )
-                }
-                )}
-            </tbody>
-        </table >
+        <>
+            <RowLabel className={'insetPadding'} name={'reverse'} type={'checkbox'} onChange={(e) => setIsPaginated(!isPaginated)} >
+            {SHOW_MORE }
+            </RowLabel>
+            {
+                isPaginated &&
+                <PaginationTable
+                    className={classProps}
+                    dataTable={dataTable}
+                    rows={rows}
+                    reverse={reverse}
+                />
+
+            }
+            {
+                !isPaginated &&
+                <>
+                    <SimpleTable
+                        className={classProps}
+                        dataTable={dataTable}
+                        pagination={isPaginated}
+                        rows={rows}
+                        reverse={reverse}
+                    />
+                </>
+            }
+        </>
     );
 };
 
