@@ -1,4 +1,5 @@
 @use "../../styles/_variables.scss" as *;
+@use "../../styles/_flexbox.scss" as flex;
 @use "../../styles/_classes.scss" as classes;
 
 .default {
@@ -15,7 +16,7 @@
                 background-color: $primary-hov;
                 color: $white;
             }
-            }
+        }
     }
     tbody {
         tr {
@@ -25,6 +26,29 @@
             &:nth-child(odd){
                 background-color: #f2f2f2;
             }
+        }
+    }
+}
+
+.paginateContainer {
+    @include flex.col();
+    span{
+        @include flex.row();
+    }
+    button {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        &:nth-child(1){
+            transform: rotate(180deg);
+        }
+        &>img {
+            height: 100%;
+            object-fit: contain;
+        &:hover {
+                cursor: pointer;
+                object-fit: unset;
+        }
         }
     }
 }
