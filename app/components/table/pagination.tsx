@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { classNamesInterface, TableInterface } from '../../types/index'
-import { CloseButton, RowLabel, Button } from '../index';
+import { CloseButton, ColLabel, RowLabel, Button } from '../index';
 import { dataSort, arrow } from './utils';
 import styles from './index.module.scss';
 
@@ -102,16 +102,21 @@ const Index = ({ className, dataTable, rows, reverse, isPaginated, setIsPaginate
                     invertir  info
                 </RowLabel>
 
-                <input type="number" onBlur={(e) => rowsHandler(e)} onChange={(e) => rowsHandler(e)} placeholder={`${currentRows}`} />
+                {
+                    //<input type="number" onBlur={(e) => rowsHandler(e)} onChange={(e) => rowsHandler(e)} placeholder={`${currentRows}`} />
+                }
+                <ColLabel name={'userRows'} type={'number'} onChange={(e) => rowsHandler(e)} onBlur={(e) => rowsHandler(e)} placeholder={`${currentRows}`} >
+                    Pic how many rows to watch
+                </ColLabel>
                 <span>
                     <Button onClick={() => { loadLessData() }}>
                         <Image src={arrow} alt="nextjs" width={32} height={32} />
                     </Button>
                     <Button onClick={() => loadMoreData()} >
-                    <Image src={arrow} alt="nextjs" width={32} height={32} />
-                </Button>
-            </span>
-        </section >
+                        <Image src={arrow} alt="nextjs" width={32} height={32} />
+                    </Button>
+                </span>
+            </section >
             <table className={className} >
                 <thead>
                     <tr>
