@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { classNamesInterface, TableInterface } from '../../types/index'
 import { CloseButton, ColLabel, RowLabel, Button } from '../index';
-import { dataSort, arrow } from './utils';
+import { dataSort, arrow, SHOW_RECENT, SHOW_OLDER, SHOW_COLUMNS } from './utils';
 import styles from './index.module.scss';
 
 interface Props extends classNamesInterface, TableInterface {
@@ -96,21 +96,26 @@ const Index = ({ className, dataTable, rows, reverse, isPaginated, setIsPaginate
     const reverseHandler = () => {
         setIsReversed(!isReversed);
         const newData = [...renderData].sort().reverse();
-        setRenderPaginatedData(dataPaginate({ currentPage, data: newData, rows: currentRows }));
+        if (isReversed) {
+            const newData = renderData.reverse();
+            setRenderData(newData);
+        }else {
+            setRenderData([...newData]);
+        }
     };
 
     return (
         <>
             <section className={styles.paginateContainer}>
                 <RowLabel name={'reverse'} type={'checkbox'} onChange={() => reverseHandler()} >
-                    invertir  info
+                {isReversed ? SHOW_OLDER : SHOW_RECENT}
                 </RowLabel>
 
                 {
                     //<input type="number" onBlur={(e) => rowsHandler(e)} onChange={(e) => rowsHandler(e)} placeholder={`${currentRows}`} />
                 }
                 <ColLabel name={'userRows'} type={'number'} onChange={(e) => rowsHandler(e)} onBlur={(e) => rowsHandler(e)} placeholder={`${currentRows}`} >
-                    Pic how many rows to watch
+                {SHOW_COLUMNS}
                 </ColLabel>
                 <span>
                     <Button onClick={() => { loadLessData() }}>
