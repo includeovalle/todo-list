@@ -31,17 +31,21 @@ const Index = ({ className, dataTable, rows, reverse, isPaginated, setIsPaginate
     const [isReversed, setIsReversed] = useState(reverse ? reverse : false);
     const [renderData, setRenderData] = useState(() => dataSort([...dataTable]));
     const [currentPage, setCurrentPage] = useState(1);
-    const [currentRows, setCurrentRows] = useState(rows ? rows : 5);
+    const [currentRows, setCurrentRows] = useState(rows ? rows : 10);
     const [renderPaginatedData, setRenderPaginatedData] = useState(dataPaginate({ currentPage, data: renderData, rows: currentRows }));
-    const [totalPages, setTotalPages] = useState(renderPaginatedData ? Math.ceil(TOTAL_ROWS / currentRows) : Math.ceil(TOTAL_ROWS / 5));
+    const [totalPages, setTotalPages] = useState(renderPaginatedData ? Math.ceil(TOTAL_ROWS / currentRows) : Math.ceil(TOTAL_ROWS / 10));
 
     useEffect(() => {
         if (isReversed) {
             const newData = renderData.reverse();
             setRenderData(newData);
             setIsReversed(!isReversed);
+        }else {
+
+        const newData = dataPaginate({ currentPage, data: renderData, rows: currentRows });
+        setRenderPaginatedData([...newData]);
         }
-    }, [isReversed, currentRows, renderPaginatedData, renderData]);
+    }, [isReversed, currentRows ]);
 
     const idSortHandler = (data: any) => {
         const tempData = dataSort([...data]);
