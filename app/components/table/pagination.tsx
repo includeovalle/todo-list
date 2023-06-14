@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { classNamesInterface, TableInterface } from '../../types/index'
-import { CloseButton, ColLabel, RowLabel, Button } from '../index';
+import { CloseButton, ColLabel, RowLabel, Button, CustomImage } from '../index';
 import { dataSort, arrow, SHOW_RECENT, SHOW_COLUMNS } from './utils';
 import styles from './index.module.scss';
 
@@ -20,9 +20,11 @@ const dataPaginate = ({ currentPage, data, rows }: PaginateInterface) => {
     return [...data].slice(startIndex, endIndex);
 };
 
-const Index = ({ className, dataTable, rows, reverse}: Props) => {
 
-    const TOTAL_ROWS = dataTable?.length??0;
+const Index = ({ className, dataTable, rows, reverse }: Props) => {
+
+    const TOTAL_ROWS = dataTable?.length ?? 0;
+
 
     const [isSorted, setIsSorted] = useState(false);
     const [isReversed, setIsReversed] = useState(reverse ? reverse : false);
@@ -68,22 +70,27 @@ const Index = ({ className, dataTable, rows, reverse}: Props) => {
         const isNumber = /^\d+$/.test(userRows);
         if (!isNumber) {
             setCurrentRows(5);
-            if(dataTable){
-            setTotalPages(Math.ceil(dataTable.length / 5));
+
+            if (dataTable) {
+                setTotalPages(Math.ceil(dataTable.length / 5));
+
             }
             const newData = dataPaginate({ currentPage, data: renderData, rows: 5 });
             setRenderPaginatedData([...newData]);
         } else if (rowsCount <= 0) {
             setCurrentRows(5);
-            if(dataTable){
-            setTotalPages(Math.ceil(dataTable.length / 5));
+
+            if (dataTable) {
+                setTotalPages(Math.ceil(dataTable.length / 5));
+
             }
             const newData = dataPaginate({ currentPage, data: renderData, rows: 5 });
             setRenderPaginatedData([...newData]);
         } else {
             setCurrentRows(rowsCount);
-            if(dataTable){
-            setTotalPages(Math.ceil(dataTable.length / 5));
+
+            if (dataTable) {
+                setTotalPages(Math.ceil(dataTable.length / 5));
             }
             const newData = dataPaginate({ currentPage, data: renderData, rows: currentRows });
             setRenderPaginatedData([...newData]);
@@ -97,7 +104,7 @@ const Index = ({ className, dataTable, rows, reverse}: Props) => {
         if (isReversed) {
             const newData = renderData.reverse();
             setRenderData(newData);
-        }else {
+        } else {
             setRenderData([...newData]);
         }
     };
@@ -106,18 +113,20 @@ const Index = ({ className, dataTable, rows, reverse}: Props) => {
         <>
             <section className={styles.paginateContainer}>
                 <RowLabel name={'reverse'} type={'checkbox'} onChange={() => reverseHandler()} >
-                {SHOW_RECENT}
+
+                    {SHOW_RECENT}
                 </RowLabel>
                 <span>
-                    <Button onClick={() => { loadLessData() }}>
-                        <Image src={arrow} alt="nextjs" width={32} height={32} />
+                    <Button className={'icon'} onClick={() => { loadLessData() }}>
+                        <CustomImage src={arrow} className={'icon'} alt={'left arrow'}/>
                     </Button>
-                    <Button onClick={() => loadMoreData()} >
-                        <Image src={arrow} alt="nextjs" width={32} height={32} />
+                    <Button className={'icon'} onClick={() => loadMoreData()} >
+                        <CustomImage src={arrow} className={'icon'} alt={'right arrow'}/>
                     </Button>
                 </span>
-                <ColLabel name={'userRows'} type={'number'} onChange={(e) => rowsHandler(e)}  placeholder={`${currentRows}`} >
-                {SHOW_COLUMNS}
+                <ColLabel name={'userRows'} type={'number'} onChange={(e) => rowsHandler(e)} placeholder={`${currentRows}`} >
+                    {SHOW_COLUMNS}
+
                 </ColLabel>
             </section >
             <table className={className} >

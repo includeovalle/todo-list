@@ -8,6 +8,4 @@ export const SHOW_COLUMNS = 'Cuantas columnas quieres ver?';
 export const SORT = 'sort';
 export const DEFAULT_ROWS =10;
 export const DEFAULT_PAGE = 1;
-//export arrow from 'public/arrow.svg';
 export { default as arrow } from 'public/arrow.png';
-
