@@ -3,7 +3,7 @@
 import SimpleTable from './simple';
 import { RowLabel } from '@/app/components';
 import PaginationTable from './pagination';
-import { SHOW_MORE} from './utils.ts';
+import { SHOW_MORE} from './utils';
 import React, { useState } from 'react';
 import styles from './index.module.scss';
 import { classNamesInterface, TableInterface } from '../../types/index'
@@ -29,8 +29,6 @@ const Index = ({ className, dataTable, pagination, rows, reverse }: Props) => {
                 <PaginationTable
                     className={classProps}
                     dataTable={dataTable}
-                    isPaginated={isPaginated}
-                    setIsPaginated={setIsPaginated}
                     rows={rows}
                     reverse={reverse}
                 />

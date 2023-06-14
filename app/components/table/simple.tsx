@@ -7,9 +7,9 @@ import { CloseButton } from '../index';
 interface Props extends classNamesInterface, TableInterface {
 }
 
-const Index = ({ className, dataTable, pagination, sort }: Props) => {
+const Index = ({ className, dataTable, pagination }: Props) => {
     const [data, setData] = useState(dataSort(dataTable));
-    const [reversed, setReversed] = useState(sort ? sort : false);
+    const [reversed, setReversed] = useState(false);
 
     const handleClick = (data: any) => {
         const tempData =  dataSort([...data]);

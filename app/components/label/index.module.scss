@@ -10,7 +10,6 @@ $lg: map-get($font-size, lg);
     width: auto;
     height: 100%;
     border-radius: $default-border-radius;
-    gap: .5em;
     //#text
     span {
         @extend .first-cap;

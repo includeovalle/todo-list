@@ -3,13 +3,10 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { classNamesInterface, TableInterface } from '../../types/index'
 import { CloseButton, ColLabel, RowLabel, Button } from '../index';
-import { dataSort, arrow, SHOW_RECENT, SHOW_OLDER, SHOW_COLUMNS } from './utils';
+import { dataSort, arrow, SHOW_RECENT, SHOW_COLUMNS } from './utils';
 import styles from './index.module.scss';
 
-interface Props extends classNamesInterface, TableInterface {
-    isPaginated: boolean;
-    setIsPaginated: React.Dispatch<React.SetStateAction<boolean>>;
-};
+interface Props extends classNamesInterface, TableInterface { };
 
 interface PaginateInterface {
     currentPage: number;
@@ -23,13 +20,13 @@ const dataPaginate = ({ currentPage, data, rows }: PaginateInterface) => {
     return [...data].slice(startIndex, endIndex);
 };
 
-const Index = ({ className, dataTable, rows, reverse, isPaginated, setIsPaginated }: Props) => {
+const Index = ({ className, dataTable, rows, reverse}: Props) => {
 
-    const TOTAL_ROWS = dataTable?.length;
+    const TOTAL_ROWS = dataTable?.length??0;
 
     const [isSorted, setIsSorted] = useState(false);
     const [isReversed, setIsReversed] = useState(reverse ? reverse : false);
-    const [renderData, setRenderData] = useState(() => dataSort([...dataTable]));
+    const [renderData, setRenderData] = useState(() => dataSort(dataTable));
     const [currentPage, setCurrentPage] = useState(1);
     const [currentRows, setCurrentRows] = useState(rows ? rows : 10);
     const [renderPaginatedData, setRenderPaginatedData] = useState(dataPaginate({ currentPage, data: renderData, rows: currentRows }));
@@ -65,22 +62,29 @@ const Index = ({ className, dataTable, rows, reverse, isPaginated, setIsPaginate
     }
 
 
-    const rowsHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const userRows = parseInt(e.target.value);
+    const rowsHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const userRows = e.target.value;
+        const rowsCount = Number(userRows);
         const isNumber = /^\d+$/.test(userRows);
         if (!isNumber) {
             setCurrentRows(5);
-            setTotalPages(Math.ceil(dataTable?.length / 5));
+            if(dataTable){
+            setTotalPages(Math.ceil(dataTable.length / 5));
+            }
             const newData = dataPaginate({ currentPage, data: renderData, rows: 5 });
             setRenderPaginatedData([...newData]);
-        } else if (userRows <= 0) {
+        } else if (rowsCount <= 0) {
             setCurrentRows(5);
-            setTotalPages(Math.ceil(dataTable?.length / 5));
+            if(dataTable){
+            setTotalPages(Math.ceil(dataTable.length / 5));
+            }
             const newData = dataPaginate({ currentPage, data: renderData, rows: 5 });
             setRenderPaginatedData([...newData]);
         } else {
-            setCurrentRows(userRows);
-            setTotalPages(Math.ceil(dataTable?.length / userRows));
+            setCurrentRows(rowsCount);
+            if(dataTable){
+            setTotalPages(Math.ceil(dataTable.length / 5));
+            }
             const newData = dataPaginate({ currentPage, data: renderData, rows: currentRows });
             setRenderPaginatedData([...newData]);
         }
@@ -112,7 +116,7 @@ const Index = ({ className, dataTable, rows, reverse, isPaginated, setIsPaginate
                         <Image src={arrow} alt="nextjs" width={32} height={32} />
                     </Button>
                 </span>
-                <ColLabel name={'userRows'} type={'number'} onChange={(e) => rowsHandler(e)} onBlur={(e) => rowsHandler(e)} placeholder={`${currentRows}`} >
+                <ColLabel name={'userRows'} type={'number'} onChange={(e) => rowsHandler(e)}  placeholder={`${currentRows}`} >
                 {SHOW_COLUMNS}
                 </ColLabel>
             </section >
