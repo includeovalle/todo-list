@@ -1,4 +1,4 @@
 export default interface LinksInterface {
-    links: boolean;
-    href: string;
+    links?: boolean;
+    href?: string;
 }
