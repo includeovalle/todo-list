@@ -15,7 +15,7 @@ const Index = ({ className, type, placeholder, children, name, onChange }: Label
     return (
     <label className={classProps}>
     <span>{text}</span>
-        <input name={name} type={type} placeholder={placeholder} />
+        <input name={name} type={type} placeholder={placeholder} onChange={onChange}/>
     </label>
     );
 };
