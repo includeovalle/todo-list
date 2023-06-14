@@ -39,7 +39,6 @@ const Index = ({ className, dataTable, pagination, rows, reverse }: Props) => {
             {
                 !isPaginated &&
                 <>
-                    <button className={'tasks'} onClick={() => setIsPaginated(!isPaginated)}>pagination</button>
                     <SimpleTable
                         className={classProps}
                         dataTable={dataTable}
