@@ -70,10 +70,10 @@ const Index = ({ className, dataTable, rows, reverse, isPaginated, setIsPaginate
         setRenderPaginatedData(() => [...newData]);
     }
 
+
     const rowsHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const userRows = parseInt(e.target.value);
         const isNumber = /^\d+$/.test(userRows);
-
         if (!isNumber) {
             setCurrentRows(5);
             setTotalPages(Math.ceil(dataTable?.length / 5));
