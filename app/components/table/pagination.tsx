@@ -38,7 +38,7 @@ const Index = ({ className, dataTable, rows, reverse, isPaginated, setIsPaginate
     useEffect(() => {
         const newData = dataPaginate({ currentPage, data: renderData, rows: currentRows });
         setRenderPaginatedData([...newData]);
-    }, [isReversed, currentRows, renderData ]);
+    }, [isReversed, currentRows, renderData, currentPage]);
 
 
     const idSortHandler = (data: any) => {
@@ -102,15 +102,8 @@ const Index = ({ className, dataTable, rows, reverse, isPaginated, setIsPaginate
         <>
             <section className={styles.paginateContainer}>
                 <RowLabel name={'reverse'} type={'checkbox'} onChange={() => reverseHandler()} >
-                {isReversed ? SHOW_OLDER : SHOW_RECENT}
+                {SHOW_RECENT}
                 </RowLabel>
-
-                {
-                    //<input type="number" onBlur={(e) => rowsHandler(e)} onChange={(e) => rowsHandler(e)} placeholder={`${currentRows}`} />
-                }
-                <ColLabel name={'userRows'} type={'number'} onChange={(e) => rowsHandler(e)} onBlur={(e) => rowsHandler(e)} placeholder={`${currentRows}`} >
-                {SHOW_COLUMNS}
-                </ColLabel>
                 <span>
                     <Button onClick={() => { loadLessData() }}>
                         <Image src={arrow} alt="nextjs" width={32} height={32} />
@@ -119,6 +112,9 @@ const Index = ({ className, dataTable, rows, reverse, isPaginated, setIsPaginate
                         <Image src={arrow} alt="nextjs" width={32} height={32} />
                     </Button>
                 </span>
+                <ColLabel name={'userRows'} type={'number'} onChange={(e) => rowsHandler(e)} onBlur={(e) => rowsHandler(e)} placeholder={`${currentRows}`} >
+                {SHOW_COLUMNS}
+                </ColLabel>
             </section >
             <table className={className} >
                 <thead>

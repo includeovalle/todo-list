@@ -8,6 +8,7 @@ export default async function Home() {
     return (
         <>
         <Tasks rows={10} 
+        pagination={true}
         dataTable={data} />
         </>
     )

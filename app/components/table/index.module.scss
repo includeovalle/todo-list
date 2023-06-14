@@ -9,6 +9,7 @@
     @extend .default;
     text-align: left;
     th {
+        padding: $default-padding-inset;
         text-align: center;
         &:nth-child(1) {
             cursor: pointer;
@@ -31,9 +32,14 @@
 }
 
 .paginateContainer {
-    @include flex.col();
+    @include flex.row(space-between, center );
+    gap: 10px;
+    width: 100%;
+    border: 1px solid $primary;
+    border-radius: $default-border-radius;
+    padding: $default-padding-inset;
     span{
-        @include flex.row();
+        @include flex.row( center,  center);
     }
     button {
         width: 40px;
@@ -45,10 +51,10 @@
         &>img {
             height: 100%;
             object-fit: contain;
-        &:hover {
+            &:hover {
                 cursor: pointer;
                 object-fit: unset;
-        }
+            }
         }
     }
 }

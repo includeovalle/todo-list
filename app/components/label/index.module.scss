@@ -2,19 +2,27 @@
 @use '../../styles/_variables.scss' as *;
 @use '../../styles/_classes.scss' as class;
 
+$xs: map-get($font-size, xs);
+$lg: map-get($font-size, lg);
+
 .default{
-    width: 100%;
+    position: relative;
+    width: auto;
     height: 100%;
     border-radius: $default-border-radius;
     gap: .5em;
     //#text
     span {
         @extend .first-cap;
-        font-size: 1.2em;
+        text-align: center;
+        padding: $default-padding-inset;
+        font-size: clamp($xs, 1.5vw, $lg);
     }
     input {
+        width: fit-content;
         border-radius: $default-border-radius;
         padding: $default-padding-inset;
+        max-width: 4em;
         &::placeholder {
             @extend .capital;
         }
@@ -28,4 +36,12 @@
 .column {
     @extend .default;
     @include flex.col(center, center);
+}
+
+.insetPadding {
+    @extend .row;
+    display: inline-block;
+    margin: $default-padding-inset;
+    padding: $default-padding-inset;
+
 }
