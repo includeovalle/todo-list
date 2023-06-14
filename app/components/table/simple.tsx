@@ -7,24 +7,17 @@ import { CloseButton } from '../index';
 interface Props extends classNamesInterface, TableInterface {
 }
 
-const Index = ({ className, dataTable, pagination, rows, sort, reverse }: Props) => {
-
-    const [data, setData] = useState(dataTable);
-    const [sorted, setSorted] = useState(sort);
-    const [reversed, setReversed] = useState(reverse? reverse:false);
+const Index = ({ className, dataTable, pagination, sort }: Props) => {
+    const [data, setData] = useState(dataSort(dataTable));
+    const [reversed, setReversed] = useState(sort ? sort : false);
 
     const handleClick = (data: any) => {
-        if (sorted && reversed) {
-            setData(dataSort(data).reverse());
-            setReversed(false);
-            return;
-        }
-        if (sorted && !reversed) {
-            setData(dataSort(data));
-            setReversed(true);
-            return;
-        }
-    };
+        const tempData =  dataSort([...data]);
+        setReversed(!reversed);
+        if (!reversed) return setData(tempData.reverse());
+        if (reversed)  return setData(tempData); 
+    }
+
 
     return (
         <>

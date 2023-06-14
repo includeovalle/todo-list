@@ -1,12 +1,14 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { classNamesInterface, TableInterface } from '../../types/index'
-import { CloseButton } from '../index';
+import { CloseButton, RowLabel, Button } from '../index';
+import { dataSort, arrow } from './utils';
+import styles from './index.module.scss';
 
-interface Props extends classNamesInterface, TableInterface { };
-
-const dataSort = (data: any) => {
-    return data?.sort((a: any, b: any) => a.id - b.id)
+interface Props extends classNamesInterface, TableInterface {
+    isPaginated: boolean;
+    setIsPaginated: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 interface PaginateInterface {
@@ -15,86 +17,111 @@ interface PaginateInterface {
     rows: number;
 }
 
+const dataPaginate = ({ currentPage, data, rows }: PaginateInterface) => {
+    const startIndex = (currentPage - 1) * rows;
+    const endIndex = startIndex + rows;
+    return [...data].slice(startIndex, endIndex);
+};
 
-const Index = ({ dataTable, rows, sort, reverse }: Props) => {
+const Index = ({ className, dataTable, rows, reverse, isPaginated, setIsPaginated }: Props) => {
 
-    const dataPaginate = ({ currentPage, data:dataPaginated, rows }: PaginateInterface) => {
-        const startIndex = (currentPage - 1) * rows;
-        const endIndex = startIndex + rows;
-        return dataPaginated.slice(startIndex, endIndex);
-    };
+    const TOTAL_ROWS = dataTable?.length;
 
-    const [isSorted, setIsSorted] = useState(sort);
-    const [renderData, setRenderData] = useState(isSorted ? dataSort(dataTable) : dataTable);
-    const [isPaginated, setIsPaginated] = useState(true);
-    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [isSorted, setIsSorted] = useState(false);
+    const [isReversed, setIsReversed] = useState(reverse ? reverse : false);
+    const [renderData, setRenderData] = useState(() => dataSort([...dataTable]));
+    const [currentPage, setCurrentPage] = useState(1);
     const [currentRows, setCurrentRows] = useState(rows ? rows : 5);
-    const [renderPaginatedData, setRenderPaginatedData] = useState(dataPaginate({ currentPage, data: renderData, rows }));
+    const [renderPaginatedData, setRenderPaginatedData] = useState(dataPaginate({ currentPage, data: renderData, rows: currentRows }));
+    const [totalPages, setTotalPages] = useState(renderPaginatedData ? Math.ceil(TOTAL_ROWS / currentRows) : Math.ceil(TOTAL_ROWS / 5));
 
-    const totalPages = Math.ceil(dataTable.length / currentRows);
+    useEffect(() => {
+        if (isReversed) {
+            const newData = renderData.reverse();
+            setRenderData(newData);
+            setIsReversed(!isReversed);
+        }
+    }, [isReversed, currentRows, renderPaginatedData, renderData]);
+
     const idSortHandler = (data: any) => {
-        setRenderData(!isSorted ? dataSort(data) : dataSort(data).reverse());
+        const tempData = dataSort([...data]);
         setIsSorted(!isSorted);
+        if (!isSorted) return setRenderPaginatedData(tempData.reverse());
+        if (isSorted) return setRenderPaginatedData(tempData);
     };
 
     const loadMoreData = () => {
+        if (currentPage == totalPages) return;
         const nextPage = currentPage + 1;
-        const newData = dataPaginate({ currentPage: nextPage, data: renderData, rows });
+        const newData = dataPaginate({ currentPage: nextPage, data: renderData, rows: currentRows });
         setCurrentPage(nextPage);
         setRenderPaginatedData(() => [...newData]);
     }
 
     const loadLessData = () => {
+        if (currentPage == 1) return;
         const nextPage = currentPage - 1;
-        const newData = dataPaginate({ currentPage: nextPage, data: renderData, rows });
+        const newData = dataPaginate({ currentPage: nextPage, data: renderData, rows: currentRows });
         setCurrentPage(nextPage);
         setRenderPaginatedData(() => [...newData]);
     }
 
-
-
     const rowsHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const userRows = parseInt(e.target.value);
-        setCurrentRows(userRows);
-        const newData = dataPaginate({ currentPage, data: renderData, rows: currentRows });
-        setRenderPaginatedData(() => [...newData]);
-    }
+        const isNumber = /^\d+$/.test(userRows);
 
-    //const dataPaginated = dataPaginate(dataTable);
-    //sort data by id
-    //const sortedData = sort ? dataSort(dataTable) : null;
-    //const sortedPaginatedData = sort ? dataPaginate(dataSort(dataTable)) : null;
-    //reverse data
-    //const reverseData = reverse ? sortedData?.reverse() : null;
-    //const reversePaginatedData = reverse ? sortedPaginatedData?.reverse() : null;
+        if (!isNumber) {
+            setCurrentRows(5);
+            setTotalPages(Math.ceil(dataTable?.length / 5));
+            const newData = dataPaginate({ currentPage, data: renderData, rows: 5 });
+            setRenderPaginatedData([...newData]);
+        } else if (userRows <= 0) {
+            setCurrentRows(5);
+            setTotalPages(Math.ceil(dataTable?.length / 5));
+            const newData = dataPaginate({ currentPage, data: renderData, rows: 5 });
+            setRenderPaginatedData([...newData]);
+        } else {
+            setCurrentRows(userRows);
+            setTotalPages(Math.ceil(dataTable?.length / userRows));
+            const newData = dataPaginate({ currentPage, data: renderData, rows: currentRows });
+            setRenderPaginatedData([...newData]);
+        }
+    };
 
+
+    const reverseHandler = () => {
+        setIsReversed(!isReversed);
+        const newData = [...renderData].sort().reverse();
+        setRenderPaginatedData(dataPaginate({ currentPage, data: newData, rows: currentRows }));
+    };
 
     return (
         <>
-            <table >
+            <section className={styles.paginateContainer}>
+                <RowLabel name={'reverse'} type={'checkbox'} onChange={() => reverseHandler()} >
+                    invertir  info
+                </RowLabel>
+
+                <input type="number" onBlur={(e) => rowsHandler(e)} onChange={(e) => rowsHandler(e)} placeholder={`${currentRows}`} />
+                <span>
+                    <Button onClick={() => { loadLessData() }}>
+                        <Image src={arrow} alt="nextjs" width={32} height={32} />
+                    </Button>
+                    <Button onClick={() => loadMoreData()} >
+                    <Image src={arrow} alt="nextjs" width={32} height={32} />
+                </Button>
+            </span>
+        </section >
+            <table className={className} >
                 <thead>
                     <tr>
-                        <th onClick={() => idSortHandler(renderData)}>ID</th>
+                        <th onClick={() => idSortHandler([...renderPaginatedData])}>ID</th>
                         <th>Tarea</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        !isPaginated &&
-                        renderData?.map((datas: any) => {
-                            return (
-                                < tr key={datas.id} >
-                                    <td>{datas.id}</td>
-                                    <td>{datas.task}</td>
-                                    <td>{datas.completed ? 'completed' : 'not completed'}</td>
-                                    <td>{<CloseButton />}</td>
-                                </tr>
-                            )
-                        })
-                    }
-                    {
-                        isPaginated &&
                         renderPaginatedData?.map((datas: any) => {
                             return (
                                 < tr key={datas.id} >
@@ -108,28 +135,6 @@ const Index = ({ dataTable, rows, sort, reverse }: Props) => {
                     }
                 </tbody>
             </table >
-            {
-                isPaginated &&
-                <div >
-                    <button onClick={() => setIsPaginated(!isPaginated)}>paginate</button>
-                    <button>reverse</button>
-                    <input type="number" placeholder={currentRows} />
-                    {
-                        currentPage > 1 &&
-                        <button onClick={() => { loadLessData() }}>-</button>
-                    }
-                    {
-                        currentPage < totalPages &&
-                        <button onClick={() => loadMoreData()} >+</button>
-                    }
-                </div>
-
-            }
-            {
-                !isPaginated &&
-                <button onClick={() => setIsPaginated(!isPaginated)}>paginate</button>
-
-            }
         </>
 
     );

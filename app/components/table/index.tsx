@@ -1,7 +1,10 @@
 'use client'
 
 import SimpleTable from './simple';
-import React, { useEffect,  useState } from 'react';
+import { RowLabel } from '@/app/components';
+import PaginationTable from './pagination';
+import { SHOW_MORE, SHOW_LESS, DEFAULT_ROWS, SORT, DEFAULT_PAGE } from './utils.ts';
+import React, { useState } from 'react';
 import styles from './index.module.scss';
 import { classNamesInterface, TableInterface } from '../../types/index'
 
@@ -9,39 +12,41 @@ interface Props extends classNamesInterface, TableInterface { };
 
 
 
-const Index = ({ className, dataTable, pagination, rows, sort, reverse }: Props) => {
+const Index = ({ className, dataTable, pagination, rows, reverse }: Props) => {
 
 
     const classProps = className ? styles[className] : styles['default'];
 
-    const [isPaginated, setIsPaginated ] = useState(pagination);
+    const [isPaginated, setIsPaginated] = useState(pagination);
 
-
-    useEffect(()=>{
-
-    },[isPaginated]);
-    //update pagination value
-    const handlePagination = () => {
-        setIsPaginated(!isPaginated);
-    }
     return (
         <>
+            <RowLabel name={'reverse'} type={'checkbox'} onChange={(e) => setIsPaginated(!isPaginated)} >
+                {isPaginated ? SHOW_MORE : SHOW_LESS}
+            </RowLabel>
             {
-                pagination &&
-                <div>other table</div>
-            }
-            {
-                !pagination &&
-                    <>
-                <SimpleTable
+                isPaginated &&
+                <PaginationTable
                     className={classProps}
-                    dataTable={dataTable ? dataTable : null}
-                    pagination={pagination}
+                    dataTable={dataTable}
+                    isPaginated={isPaginated}
+                    setIsPaginated={setIsPaginated}
                     rows={rows}
-                    sort={sort}
                     reverse={reverse}
                 />
-                <button onClick={()=> {handlePagination()}}>pagination</button>
+
+            }
+            {
+                !isPaginated &&
+                <>
+                    <button className={'tasks'} onClick={() => setIsPaginated(!isPaginated)}>pagination</button>
+                    <SimpleTable
+                        className={classProps}
+                        dataTable={dataTable}
+                        pagination={isPaginated}
+                        rows={rows}
+                        reverse={reverse}
+                    />
                 </>
             }
         </>
