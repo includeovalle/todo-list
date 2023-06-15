@@ -16,7 +16,7 @@ const Index = ({ className, display, children }: Props) => {
 
     const modalHandlerClose = () => {
         modalRef.current?.close();
-        window.location.reload();
+        //window.location.reload();
     };
 
     const newClassName = className ? className.charAt(0).toUpperCase() + className?.slice(1) : null;

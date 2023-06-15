@@ -11,7 +11,6 @@ const Index = ({ className, type, placeholder, children, name, onChange }: Label
 
     const text = children ? children : "enter text"
 
-    console.log({ classProps })
     return (
         <label className={classProps}>
             <span>{text}</span>
