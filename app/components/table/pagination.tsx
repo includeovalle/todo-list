@@ -35,6 +35,7 @@ const Index = ({ className, dataTable, rows, reverse }: Props) => {
     const [totalPages, setTotalPages] = useState(renderPaginatedData ? Math.ceil(TOTAL_ROWS / currentRows) : Math.ceil(TOTAL_ROWS / 10));
 
     useEffect(() => {
+        console.log('called');
         const newData = dataPaginate({ currentPage, data: renderData, rows: currentRows });
         setRenderPaginatedData([...newData]);
     }, [isReversed, currentRows, renderData, currentPage]);
