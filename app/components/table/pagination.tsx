@@ -20,17 +20,11 @@ const dataPaginate = ({ currentPage, data, rows }: PaginateInterface) => {
     return [...data].slice(startIndex, endIndex);
 };
 
-<<<<<<< HEAD
-const Index = ({ className, dataTable, rows, reverse}: Props) => {
-
-    const TOTAL_ROWS = dataTable?.length??0;
-=======
 
 const Index = ({ className, dataTable, rows, reverse }: Props) => {
 
     const TOTAL_ROWS = dataTable?.length ?? 0;
 
->>>>>>> dev
 
     const [isSorted, setIsSorted] = useState(false);
     const [isReversed, setIsReversed] = useState(reverse ? reverse : false);
@@ -76,42 +70,23 @@ const Index = ({ className, dataTable, rows, reverse }: Props) => {
         const isNumber = /^\d+$/.test(userRows);
         if (!isNumber) {
             setCurrentRows(5);
-<<<<<<< HEAD
-            if(dataTable){
-            setTotalPages(Math.ceil(dataTable.length / 5));
-=======
 
             if (dataTable) {
                 setTotalPages(Math.ceil(dataTable.length / 5));
-
->>>>>>> dev
             }
             const newData = dataPaginate({ currentPage, data: renderData, rows: 5 });
             setRenderPaginatedData([...newData]);
         } else if (rowsCount <= 0) {
             setCurrentRows(5);
-<<<<<<< HEAD
-            if(dataTable){
-            setTotalPages(Math.ceil(dataTable.length / 5));
-=======
-
             if (dataTable) {
                 setTotalPages(Math.ceil(dataTable.length / 5));
-
->>>>>>> dev
             }
             const newData = dataPaginate({ currentPage, data: renderData, rows: 5 });
             setRenderPaginatedData([...newData]);
         } else {
             setCurrentRows(rowsCount);
-<<<<<<< HEAD
-            if(dataTable){
-            setTotalPages(Math.ceil(dataTable.length / 5));
-=======
-
             if (dataTable) {
                 setTotalPages(Math.ceil(dataTable.length / 5));
->>>>>>> dev
             }
             const newData = dataPaginate({ currentPage, data: renderData, rows: currentRows });
             setRenderPaginatedData([...newData]);
@@ -125,11 +100,7 @@ const Index = ({ className, dataTable, rows, reverse }: Props) => {
         if (isReversed) {
             const newData = renderData.reverse();
             setRenderData(newData);
-<<<<<<< HEAD
-        }else {
-=======
         } else {
->>>>>>> dev
             setRenderData([...newData]);
         }
     };
@@ -138,21 +109,6 @@ const Index = ({ className, dataTable, rows, reverse }: Props) => {
         <>
             <section className={styles.paginateContainer}>
                 <RowLabel name={'reverse'} type={'checkbox'} onChange={() => reverseHandler()} >
-<<<<<<< HEAD
-                {SHOW_RECENT}
-                </RowLabel>
-                <span>
-                    <Button onClick={() => { loadLessData() }}>
-                        <Image src={arrow} alt="nextjs" width={32} height={32} />
-                    </Button>
-                    <Button onClick={() => loadMoreData()} >
-                        <Image src={arrow} alt="nextjs" width={32} height={32} />
-                    </Button>
-                </span>
-                <ColLabel name={'userRows'} type={'number'} onChange={(e) => rowsHandler(e)}  placeholder={`${currentRows}`} >
-                {SHOW_COLUMNS}
-=======
-
                     {SHOW_RECENT}
                 </RowLabel>
                 <span>
@@ -166,7 +122,6 @@ const Index = ({ className, dataTable, rows, reverse }: Props) => {
                 <ColLabel name={'userRows'} type={'number'} onChange={(e) => rowsHandler(e)} placeholder={`${currentRows}`} >
                     {SHOW_COLUMNS}
 
->>>>>>> dev
                 </ColLabel>
             </section >
             <table className={className} >

@@ -47,7 +47,6 @@ const Tasks = ({ dataTable, pagination, rows, reverse }: PropsInterface) => {
 
             <Table className="tasks"
                 dataTable={dataTable}
-                pagination={pagination}
                 rows={rows}
                 reverse={reverse}
             />
