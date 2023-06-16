@@ -40,6 +40,7 @@
     padding: $default-padding-inset;
     span{
         @include flex.row( center,  center);
+<<<<<<< HEAD
     }
     button {
         width: 40px;
@@ -56,5 +57,14 @@
                 object-fit: unset;
             }
         }
+=======
+        gap: 10px;
+    }
+    button {
+        &:nth-child(1){
+            transform: rotate(180deg);
+        }
+
+>>>>>>> dev
     }
 }

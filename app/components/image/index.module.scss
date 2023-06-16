@@ -28,3 +28,16 @@
         }
     }
 }
+
+.icon{
+    position: relative;
+    height: inherit;
+    width: inherit;
+    cursor: pointer;
+    img {
+        object-fit: contain;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}

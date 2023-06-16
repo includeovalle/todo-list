@@ -22,7 +22,7 @@ const Tasks = ({ dataTable, pagination, rows, reverse }: PropsInterface) => {
         data.completed = "false";
         const stringData = JSON.stringify(data);
 
-        const response = await fetch('http://localhost:3000/api/task/POST', {
+        const response = await fetch('api/task/POST', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
