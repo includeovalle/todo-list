@@ -73,22 +73,18 @@ const Index = ({ className, dataTable, rows, reverse }: Props) => {
 
             if (dataTable) {
                 setTotalPages(Math.ceil(dataTable.length / 5));
-
             }
             const newData = dataPaginate({ currentPage, data: renderData, rows: 5 });
             setRenderPaginatedData([...newData]);
         } else if (rowsCount <= 0) {
             setCurrentRows(5);
-
             if (dataTable) {
                 setTotalPages(Math.ceil(dataTable.length / 5));
-
             }
             const newData = dataPaginate({ currentPage, data: renderData, rows: 5 });
             setRenderPaginatedData([...newData]);
         } else {
             setCurrentRows(rowsCount);
-
             if (dataTable) {
                 setTotalPages(Math.ceil(dataTable.length / 5));
             }
@@ -113,7 +109,6 @@ const Index = ({ className, dataTable, rows, reverse }: Props) => {
         <>
             <section className={styles.paginateContainer}>
                 <RowLabel name={'reverse'} type={'checkbox'} onChange={() => reverseHandler()} >
-
                     {SHOW_RECENT}
                 </RowLabel>
                 <span>

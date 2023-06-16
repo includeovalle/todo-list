@@ -17,7 +17,7 @@ const Index = ({ className, dataTable, pagination, rows, reverse }: Props) => {
 
     const classProps = className ? styles[className] : styles['default'];
 
-    const [isPaginated, setIsPaginated] = useState(pagination);
+    const [isPaginated, setIsPaginated] = useState(true);
 
     return (
         <>
