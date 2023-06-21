@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Htag, Container, Form, ColLabel, Table } from '../../index';
 import { Modal } from '../index';
 import { TableInterface } from "../../../types/index";
@@ -22,15 +22,28 @@ const Tasks = ({ dataTable, pagination, rows, reverse }: PropsInterface) => {
         data.completed = "false";
         const stringData = JSON.stringify(data);
 
-        const response = await fetch('api/task/POST', {
+        const response = await fetch('task', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: stringData
         });
-        console.log('response', response);
+
+        if (!response.ok) {
+            //return error
+            console.log('error', response);
+            return;
+        }
+        if (response.ok) {
+            window.location.href = '/';
+        }
+
+
     };
+
+    useEffect(()=>{
+    },[]);
 
     return (
         <Container>
