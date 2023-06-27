@@ -3,7 +3,7 @@
 import SimpleTable from './simple';
 import { RowLabel } from '@/app/components';
 import PaginationTable from './pagination';
-import { SHOW_MORE} from './utils';
+import { SHOW_MORE } from './utils';
 import React, { useState } from 'react';
 import styles from './index.module.scss';
 import { classNamesInterface, TableInterface } from '../../types/index'
@@ -22,7 +22,7 @@ const Index = ({ className, dataTable, pagination, rows, reverse }: Props) => {
     return (
         <>
             <RowLabel className={'insetPadding'} name={'reverse'} type={'checkbox'} onChange={(e) => setIsPaginated(!isPaginated)} >
-            {SHOW_MORE }
+                {SHOW_MORE}
             </RowLabel>
             {
                 isPaginated &&
