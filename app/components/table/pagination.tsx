@@ -140,7 +140,7 @@ const Index = ({ className, dataTable, rows, reverse }: Props) => {
                                     <td>{datas.id}</td>
                                     <td>{datas.task}</td>
                                     <td>{datas.completed ? 'completed' : 'not completed'}</td>
-                                    <td>{<CloseButton />}</td>
+                                    <td>{<CloseButton className={'deleteTask'}/>}</td>
                                 </tr>
                             )
                         })

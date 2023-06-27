@@ -20,3 +20,15 @@ export async function POST(request: Request) {
     })
     return NextResponse.json(res);
 }
+
+//export async function PUT(request: Request) {
+//    const body = await request.json();
+//    const strigBody = JSON.stringify(body);
+//    console.log('this is put ', strigBody);
+//    const res = await fetch(DataRoute, {
+//        headers: { 'Content-Type': 'application/json' },
+//        method: 'PUT',
+//        body: JSON.stringify(body)
+//    })
+//    return NextResponse.json(res);
+//}

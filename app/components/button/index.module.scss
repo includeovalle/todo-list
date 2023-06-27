@@ -70,6 +70,10 @@
     top: unset;
     border: 1px groove $secondary;
 }
+.pointerTask {
+    @extend  .deleteTask;
+    pointer-events: none;
+}
 .modalTask {
     @extend  .default;
     @extend  .first-cap;

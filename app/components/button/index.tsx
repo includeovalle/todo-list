@@ -5,7 +5,6 @@ import { ButtonInterface } from 'app/types';
 const Index = ({ className, type, children, onClick }: ButtonInterface) => {
 
     const propStyle = className ? styles[className] : styles['default'];
-
     return (
         <button className={propStyle} type={type} onClick={onClick}>
             {children}
@@ -26,15 +25,15 @@ interface CloseButtonInterface extends ButtonInterface {
     closeBtn?: JSX.Element
 }
 
-export const closeButton = ({onClick, className="deleteTask", closeBtn}:CloseButtonInterface) =>{
+export const closeButton = ({ onClick, className, closeBtn }: CloseButtonInterface) => {
 
     const closeBtnDefault = closeBtn ? closeBtn : <Spans />;
 
-    return(
-            <Index type={'button'} className={className} onClick={onClick}>
+    return (
+        <Index type={'button'} className={className} onClick={onClick}>
             {closeBtnDefault}
-            </Index>
-            )
+        </Index>
+    )
 };
 
 export default Index;
