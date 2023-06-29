@@ -43,3 +43,20 @@ export async function PUT(req: Request) {
     }
     
 }
+
+export async function DELETE(req: Request) {
+    //get last number in url
+    const id = req.url.split('/').pop();
+
+    //get full url route
+    const fullRoute = `${DataRoute}${id}`;
+    //create promise method
+    const res =  await fetch(fullRoute, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+    });
+    if (res.ok) {
+        return NextResponse.json({message: 'success',status: 200});
+    }
+}
+    
