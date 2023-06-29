@@ -44,3 +44,52 @@ $lg: map-get($font-size, lg);
     padding: $default-padding-inset;
 
 }
+.rangeButton {
+    transition: all 3s ease-in-out;
+    span{
+        @include flex.row(space-between, center);
+        text-transform: capitalize;
+    }
+    /* Set the track color */
+    input[type="range"] {
+        -webkit-appearance: none; /* Hides the default appearance in WebKit (Safari, Chrome) */
+        width: 100%;
+        height: 24px;
+        cursor: pointer;
+        border-radius: 35px;
+
+        &::-webkit-slider-runnable-track {
+            &:hover {
+                transition: inherit;
+            }
+            &:active {
+                transition: inherit;
+                border: 2px solid $primary-hov;
+                border-radius: 35px;
+                background-color: $primary-hov;
+            }
+        }
+
+    }
+
+    /* Set the thumb (handle) appearance */
+    input[type="range"]::-webkit-slider-thumb {
+        transition: all .175s ease-in-out;
+        -webkit-appearance: none; /* Hides the default appearance in WebKit (Safari, Chrome) */
+        width: 26px;
+        height: 26px;
+        background-color: $primary-hov;
+        border: 1px solid $black;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-right: 3px;
+        &:hover {
+            background-color: $primary;
+            border: unset;
+        }
+        &:active {
+            border: 1px solid $primary-hov;
+        }
+    }
+
+}
