@@ -2,13 +2,15 @@
 import React, { useState } from 'react';
 import { classNamesInterface, TableInterface } from '../../types/index'
 import { dataSort } from './utils';
-import { CloseButton } from '../index';
+import { CloseButton, RowLabel } from '../index';
 
 interface Props extends classNamesInterface, TableInterface {
 }
 
 const Index = ({ className, dataTable }: Props) => {
     const [data, setData] = useState(dataSort(dataTable));
+    const [isCompleted, setIsCompleted] = useState(1);
+
     const [reversed, setReversed] = useState(false);
 
     const idSorter = (data: any) => {
