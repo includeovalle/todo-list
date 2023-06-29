@@ -59,4 +59,3 @@ export async function DELETE(req: Request) {
         return NextResponse.json({message: 'success',status: 200});
     }
 }
-    

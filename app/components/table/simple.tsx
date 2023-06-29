@@ -23,6 +23,7 @@ const Index = ({ className, dataTable }: Props) => {
     async function DeleteHandler(e: React.MouseEvent<HTMLTableDataCellElement, MouseEvent>) {
         const target = e.target as HTMLElement;
         const id = target.previousSibling?.previousSibling?.previousSibling?.textContent;
+
         const FetchData = await fetch(`task/${id}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
@@ -60,6 +61,7 @@ const Index = ({ className, dataTable }: Props) => {
         const id = target.previousSibling?.textContent;
 
 
+
     };
     return (
         <>
@@ -75,11 +77,14 @@ const Index = ({ className, dataTable }: Props) => {
                     {//TODO: ADD UPDATE  AND DELETE BUTTONS
                         data?.map((datas: any) => {
                             const { id, task, completed } = datas;
+
                             const status = completed ? 'completed' : 'not completed';
+
                             return (
                                 < tr key={id} >
                                     <td>{id}</td>
                                     <td onDoubleClick={e => UpdateTaskHandler(e)}>{task}</td>
+
                                     <td >
                                         <RowLabel className={'rangeButton'}
                                             onChange={e => UpdateStatusHandler(e)}
@@ -92,6 +97,7 @@ const Index = ({ className, dataTable }: Props) => {
                                         </RowLabel>
                                     </td>
                                     <td  onClick={e => DeleteHandler(e)} style={{cursor:"pointer", paddingLeft:"1%",}} >
+
                                         {<CloseButton className={'pointerTask'} />}
                                     </td>
                                 </tr>
